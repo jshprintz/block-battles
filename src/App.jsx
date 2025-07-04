@@ -5,7 +5,9 @@ function App() {
   return (
     <Container>
       <LandingPage>
-        <h1>Block Battles</h1>
+        <HeaderContainer>
+          <h1>Dungeon Battles</h1>
+        </HeaderContainer>
         <Menu>
           <StartButton>
             <p>Start</p>
@@ -23,6 +25,10 @@ const Container = styled(FlexCol)`
   height: 99dvh;
   font-size: 100%;
   overflow: hidden;
+
+  font-family: "Megrim", system-ui;
+  font-weight: 400;
+  font-style: normal;
 `;
 
 const LandingPage = styled(FlexCol)`
@@ -30,6 +36,11 @@ const LandingPage = styled(FlexCol)`
 
   color: white;
   background-color: black;
+`;
+
+const HeaderContainer = styled(FlexCol)`
+  height: auto;
+  font-size: 400%;
 `;
 
 const Menu = styled(FlexCol)`
@@ -41,14 +52,14 @@ const Menu = styled(FlexCol)`
 
 const MenuButton = styled(FlexCol)`
   height: 25%;
-  width: 80%;
+  width: 50%;
   border-radius: 5px;
   transition: transform 200ms ease-in;
   cursor: pointer;
   font-size: 300%;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.02);
   }
 `;
 

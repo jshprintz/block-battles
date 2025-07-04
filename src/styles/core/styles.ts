@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Default = styled.div`
   margin: 0;
   padding: 0;
-  
+
   width: 100%;
   height: 100%;
 
@@ -26,7 +26,7 @@ export const FlexRow = styled(Default)`
 
 export const COLORS = {
   START_BTN:
-    "linear-gradient(to bottom, #1b5b41, #097347, #008b4a, #00a348, #00bc42, #00bc42, #00bc42, #00bc42, #00a348, #008b4a, #097347, #1b5b41)",
+    "linear-gradient(to bottom, #1b5b41, #097347, #008b4a, #00a348, #010101, #000000, #000000, #010101, #00a348, #008b4a, #097347, #1b5b41)",
   REG_BTN:
-    "linear-gradient(to bottom, #ac9222, #b99f20, #c5ac1c, #d1b918, #ddc711, #ddc711, #ddc711, #ddc711, #d1b918, #c5ac1c, #b99f20, #ac9222)",
+    "linear-gradient(to bottom, #ac9222, #b99f20, #c5ac1c, #d1b918, #010101, #000000, #000000, #010101, #d1b918, #c5ac1c, #b99f20, #ac9222)",
 };
