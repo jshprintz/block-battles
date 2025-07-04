@@ -21,7 +21,7 @@ function App() {
 
 const Container = styled(FlexCol)`
   height: 99dvh;
-  font-size: 5rem;
+  font-size: 100%;
   overflow: hidden;
 `;
 
@@ -45,6 +45,7 @@ const MenuButton = styled(FlexCol)`
   border-radius: 5px;
   transition: transform 200ms ease-in;
   cursor: pointer;
+  font-size: 300%;
 
   &:hover {
     transform: scale(1.1);
@@ -53,7 +54,7 @@ const MenuButton = styled(FlexCol)`
 
 const StartButton = styled(MenuButton)`
   background-image: ${COLORS.START_BTN};
-  font-size: 9rem;
+  font-size: 400%;
 `;
 
 const RegularMenuButton = styled(MenuButton)`
