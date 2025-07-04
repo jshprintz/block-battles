@@ -1,17 +1,63 @@
 import styled from "styled-components";
-import { FlexCol } from "./styles/core/styles";
+import { FlexCol, COLORS } from "./styles/core/styles";
 
 function App() {
   return (
     <Container>
-      <h1>Hello World</h1>
+      <LandingPage>
+        <h1>Block Battles</h1>
+        <Menu>
+          <StartButton>
+            <p>Start</p>
+          </StartButton>
+          <RegularMenuButton>
+            <p>Rules</p>
+          </RegularMenuButton>
+        </Menu>
+      </LandingPage>
     </Container>
   );
 }
 
 const Container = styled(FlexCol)`
-  width: 100dvw;
-  height: 100dvh;
+  height: 99dvh;
+  font-size: 5rem;
+  overflow: hidden;
+`;
+
+const LandingPage = styled(FlexCol)`
+  justify-content: space-around;
+
+  color: white;
+  background-color: black;
+`;
+
+const Menu = styled(FlexCol)`
+  height: 50%;
+  width: 75%;
+  justify-content: space-evenly;
+  border-radius: 5px;
+`;
+
+const MenuButton = styled(FlexCol)`
+  height: 25%;
+  width: 80%;
+  border-radius: 5px;
+  transition: transform 200ms ease-in;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+const StartButton = styled(MenuButton)`
+  background-image: ${COLORS.START_BTN};
+  font-size: 9rem;
+`;
+
+const RegularMenuButton = styled(MenuButton)`
+  background-image: ${COLORS.REG_BTN};
 `;
 
 export default App;
