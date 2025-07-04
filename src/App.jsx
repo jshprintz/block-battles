@@ -40,7 +40,8 @@ const LandingPage = styled(FlexCol)`
 
 const HeaderContainer = styled(FlexCol)`
   height: auto;
-  font-size: 400%;
+  text-align: center;
+  font-size: 300%;
 `;
 
 const Menu = styled(FlexCol)`
@@ -65,7 +66,7 @@ const MenuButton = styled(FlexCol)`
 
 const StartButton = styled(MenuButton)`
   background-image: ${COLORS.START_BTN};
-  font-size: 400%;
+  font-size: 350%;
 `;
 
 const RegularMenuButton = styled(MenuButton)`
