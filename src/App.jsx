@@ -1,6 +1,6 @@
-import LandingPage from "./pages/landing/LandingPage";
+import LandingPage from "./pages/LandingPage/LandingPage";
 import { Routes, Route } from "react-router-dom";
-import NotFound from "./pages/not_found/NotFound";
+import NotFound from "./pages/NotFoundPage/NotFound";
 
 function App() {
   return (
