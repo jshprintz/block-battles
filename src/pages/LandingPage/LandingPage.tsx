@@ -1,15 +1,8 @@
 import styled from "styled-components";
 import { COLORS, FlexCol } from "../../styles/core/styles";
+import { Link } from "react-router-dom";
 
 function LandingPage() {
-  const onStartClick = () => {
-    console.log("START BUTTON CLICKED");
-  };
-
-  const onRulesClick = () => {
-    console.log("RULE BUTTON CLICKED");
-  };
-
   return (
     <Container>
       <LandingPageContainer>
@@ -17,10 +10,10 @@ function LandingPage() {
           <h1>Dungeon Battles</h1>
         </HeaderContainer>
         <Menu>
-          <StartButton onClick={onStartClick}>
+          <StartButton to="/start">
             <p>Start</p>
           </StartButton>
-          <RegularMenuButton onClick={onRulesClick}>
+          <RegularMenuButton to="/rules">
             <p>Rules</p>
           </RegularMenuButton>
         </Menu>
@@ -59,9 +52,18 @@ const Menu = styled(FlexCol)`
   border-radius: 5px;
 `;
 
-const MenuButton = styled(FlexCol)`
+const MenuButton = styled(Link)`
   height: 25%;
   width: 50%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  text-decoration: none;
+
   border-radius: 5px;
   transition: transform 200ms ease-in;
   cursor: pointer;
