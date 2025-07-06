@@ -22,10 +22,11 @@ function LandingPage() {
   );
 }
 
-const Container = styled(FlexCol)`
+export const Container = styled(FlexCol)`
   height: 99dvh;
   font-size: 100%;
   overflow: hidden;
+  justify-content: space-around;
 
   font-family: "Megrim", system-ui;
   font-weight: 400;
@@ -34,18 +35,17 @@ const Container = styled(FlexCol)`
 
 const LandingPageContainer = styled(FlexCol)`
   justify-content: space-around;
-
   color: white;
   background-color: black;
 `;
 
-const HeaderContainer = styled(FlexCol)`
+export const HeaderContainer = styled(FlexCol)`
   height: auto;
   text-align: center;
   font-size: 300%;
 `;
 
-const Menu = styled(FlexCol)`
+export const Menu = styled(FlexCol)`
   height: 50%;
   width: 75%;
   justify-content: space-evenly;
