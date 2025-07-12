@@ -3,8 +3,27 @@ import { FlexCol, FlexRow } from "../../styles/core/styles";
 import styled from "styled-components";
 import { Container, HeaderContainer, Menu } from "../LandingPage/LandingPage";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
+import { useEffect, useState } from "react";
+import { IWarriorList } from "../../types/core";
 
 const StartPage = () => {
+  const [warriorList, setWarriorList] = useState<IWarriorList>();
+
+  useEffect(() => {
+    fetch("/block-battles/warrior_list.json")
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        setWarriorList(json);
+      })
+      .catch((err) => {
+        console.error("Error fetching data:", err);
+      });
+  }, []);
+
+  console.log("Warrior List", warriorList);
+
   return (
     <StartPageContainer>
       <StartPageHeader>
