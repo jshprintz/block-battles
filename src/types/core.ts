@@ -1,5 +1,6 @@
 interface IWarrior {
   class: string;
+  description: string;
   skillTree: {
     power: number;
     accuracy: number;
