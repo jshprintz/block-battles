@@ -3,11 +3,35 @@ import { FlexCol, FlexRow } from "../../styles/core/styles";
 import styled from "styled-components";
 import { Container, HeaderContainer, Menu } from "../LandingPage/LandingPage";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
-import { useEffect, useState } from "react";
-import { IWarriorList } from "../../types/core";
+import { useEffect, useRef, useState } from "react";
+import { IWarrior } from "../../types/core";
+import { TeamPreview } from "./Components/TeamPreview";
+import { WarriorCard } from "./Components/WarriorCard";
 
 const StartPage = () => {
-  const [warriorList, setWarriorList] = useState<IWarriorList>();
+  const [warriorList, setWarriorList] = useState<IWarrior[]>();
+  const [currentWarrior, setCurrentWarrior] = useState<IWarrior>();
+  const [warriorNumber, setWarriorNumber] = useState<number>(0);
+
+  console.log("Current", currentWarrior);
+
+  const onLeftClick = () => {
+    if (warriorNumber === 0) {
+      setWarriorNumber(4);
+    } else {
+      setWarriorNumber(warriorNumber - 1);
+    }
+    console.log("warriorNumber", warriorNumber);
+  };
+
+  const onRightClick = () => {
+    if (warriorNumber === 4) {
+      setWarriorNumber(0);
+    } else {
+      setWarriorNumber(warriorNumber + 1);
+    }
+    console.log("warriorNumber", warriorNumber);
+  };
 
   useEffect(() => {
     fetch("/block-battles/warrior_list.json")
@@ -15,64 +39,47 @@ const StartPage = () => {
         return res.json();
       })
       .then((json) => {
-        setWarriorList(json);
+        const data = json as IWarrior[];
+        setWarriorList(data);
       })
       .catch((err) => {
         console.error("Error fetching data:", err);
       });
   }, []);
 
-  console.log("Warrior List", warriorList);
+  useEffect(() => {
+    console.log("warriorList", warriorList);
+    if (warriorList) {
+      console.log(warriorList[warriorNumber]);
+      setCurrentWarrior(warriorList[warriorNumber]);
+    }
+  }, [warriorNumber, warriorList]);
 
   return (
     <StartPageContainer>
       <StartPageHeader>
         <h2>Choose Warriors</h2>
       </StartPageHeader>
+
       <CardDescription>
         Here is a sample description of the card. It contains an anecdote
         related to the image and name. It can fit three lines.
       </CardDescription>
+
       <SelectionBoxContainer>
-        <HiChevronLeft size={150} style={{ cursor: "pointer" }} />
-        <SelectionBox>
-          <CardHeader>
-            <span>NAME</span>
-            <span>CLASS</span>
-          </CardHeader>
-          <CardImage />
-          <CardStatsContainer>
-            <CardStats>Power</CardStats>
-            <CardStats>Accuracy</CardStats>
-            <CardStats>Conditioning</CardStats>
-            <CardStats>Speed</CardStats>
-            <CardStats>Health</CardStats>
-          </CardStatsContainer>
-        </SelectionBox>
-        <HiChevronRight size={150} style={{ cursor: "pointer" }} />
+        <HiChevronLeft
+          size={150}
+          style={{ cursor: "pointer" }}
+          onClick={onLeftClick}
+        />
+        <WarriorCard />
+        <HiChevronRight
+          size={150}
+          style={{ cursor: "pointer" }}
+          onClick={onRightClick}
+        />
       </SelectionBoxContainer>
-      <TeamBox>
-        <TeamCard>
-          <div>Image</div>
-          <div>Class</div>
-        </TeamCard>
-        <TeamCard>
-          <div>Image</div>
-          <div>Class</div>
-        </TeamCard>
-        <TeamCard>
-          <div>Image</div>
-          <div>Class</div>
-        </TeamCard>
-        <TeamCard>
-          <div>Image</div>
-          <div>Class</div>
-        </TeamCard>
-        <TeamCard>
-          <div>Image</div>
-          <div>Class</div>
-        </TeamCard>
-      </TeamBox>
+      <TeamPreview />
       <HomeButton to="/">Home</HomeButton>
     </StartPageContainer>
   );
