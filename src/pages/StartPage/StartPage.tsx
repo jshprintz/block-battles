@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 import { FlexRow } from "../../styles/core/styles";
 import { Container, HeaderContainer } from "../LandingPage/LandingPage";
 import { IWarrior } from "../../types/core";
@@ -12,7 +11,10 @@ import { warriors as warriorList } from "../../data/constants";
 
 const StartPage = () => {
   const [warriorNumber, setWarriorNumber] = useState(0);
-  const currentWarrior: IWarrior = warriorList[warriorNumber];
+  const [currentWarrior, setCurrentWarrior] = useState<IWarrior>(
+    warriorList[warriorNumber]
+  );
+  const [assembledTeam, setAssembledTeam] = useState<IWarrior[]>([]);
 
   const onLeftClick = () => {
     setWarriorNumber((prev) =>
@@ -25,6 +27,10 @@ const StartPage = () => {
       prev === warriorList.length - 1 ? 0 : prev + 1
     );
   };
+
+  useEffect(() => {
+    setCurrentWarrior(warriorList[warriorNumber]);
+  }, [warriorNumber]);
 
   return (
     <StartPageContainer>
@@ -40,7 +46,7 @@ const StartPage = () => {
           style={{ cursor: "pointer" }}
           onClick={onLeftClick}
         />
-        <WarriorCard />
+        <WarriorCard currentWarrior={currentWarrior} />
         <HiChevronRight
           size={150}
           style={{ cursor: "pointer" }}
@@ -48,7 +54,7 @@ const StartPage = () => {
         />
       </SelectionBoxContainer>
 
-      <TeamPreview />
+      <TeamPreview assembledTeam={assembledTeam}/>
       <HomeButton to="/">Home</HomeButton>
     </StartPageContainer>
   );
@@ -62,6 +68,7 @@ const StartPageContainer = styled(Container)`
 const StartPageHeader = styled(HeaderContainer)`
   max-height: 20%;
   border: 1px solid blue;
+  user-select: none;
 `;
 
 const CardDescription = styled(FlexRow)`
@@ -69,6 +76,7 @@ const CardDescription = styled(FlexRow)`
   border: 2px solid white;
   text-align: center;
   padding: 1rem;
+  user-select: none;
 `;
 
 const SelectionBoxContainer = styled(FlexRow)`

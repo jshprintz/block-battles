@@ -31,6 +31,8 @@ export const Container = styled(FlexCol)`
   font-family: "Barriecito", system-ui;
   font-weight: 400;
   font-style: normal;
+
+
 `;
 
 const LandingPageContainer = styled(FlexCol)`

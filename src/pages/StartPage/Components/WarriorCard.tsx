@@ -1,22 +1,48 @@
 import styled from "styled-components";
 import { Menu } from "../../LandingPage/LandingPage";
-import { FlexRow } from "../../../styles/core/styles";
+import { COLORS, FlexRow } from "../../../styles/core/styles";
+import { IWarrior } from "../../../types/core";
 
-export const WarriorCard = () => {
+interface IWarriorCodeProps {
+  currentWarrior: IWarrior;
+  assembledTeam?: IWarrior[];
+  setAssembledTeam?: any;
+}
+
+export const WarriorCard: React.FC<IWarriorCodeProps> = ({
+  currentWarrior,
+}) => {
+  const warriorName: string = currentWarrior.name;
+  const classType: string = currentWarrior.class;
+  const skillTree = currentWarrior.skillTree;
+  const power = skillTree.power;
+  const accuracy = skillTree.accuracy;
+  const conditioning = skillTree.conditioning;
+  const speed = skillTree.speed;
+  const health = skillTree.health;
+  const traits = currentWarrior.traits;
+
+  const handleAddClick = () => {
+    console.log("Add Clicked!");
+  };
+
   return (
     <SelectionBox>
       <CardHeader>
-        <span>NAME</span>
-        <span>CLASS</span>
+        <span>{warriorName}</span>
+        <span>{classType}</span>
       </CardHeader>
       <CardImage />
       <CardStatsContainer>
-        <CardStats>Power</CardStats>
-        <CardStats>Accuracy</CardStats>
-        <CardStats>Conditioning</CardStats>
-        <CardStats>Speed</CardStats>
-        <CardStats>Health</CardStats>
+        <CardStats>Power: {power}</CardStats>
+        <CardStats>Accuracy: {accuracy}</CardStats>
+        <CardStats>Conditioning: {conditioning}</CardStats>
+        <CardStats>Speed: {speed}</CardStats>
+        <CardStats>Health: {health}</CardStats>
       </CardStatsContainer>
+      <AddButtonContainer>
+        <AddButton onClick={handleAddClick}>+</AddButton>
+      </AddButtonContainer>
     </SelectionBox>
   );
 };
@@ -34,6 +60,8 @@ const CardHeader = styled(FlexRow)`
   padding: 5px;
   justify-content: space-between;
   border-bottom: 2px solid white;
+
+  user-select: none;
 `;
 
 const CardImage = styled.img`
@@ -46,10 +74,32 @@ const CardImage = styled.img`
 const CardStatsContainer = styled.ul`
   height: auto;
   width: 100%;
-  font-size: 125%;
+  font-size: 110%;
   list-style: none;
+
+  user-select: none;
 `;
 
 const CardStats = styled.li`
   margin-bottom: 5px;
+`;
+
+const AddButtonContainer = styled(FlexRow)`
+  width: 100%;
+  height: 40px;
+  justify-content: flex-end;
+  padding-right: 5px;
+  padding-bottom: 5px;
+`;
+
+const AddButton = styled(FlexRow)`
+  height: 40px;
+  width: 40px;
+  background-image: ${COLORS.START_BTN};
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover {
+    font-size: 150%;
+  }
 `;

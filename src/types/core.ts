@@ -1,4 +1,5 @@
 interface IWarrior {
+  name: string;
   class: string;
   description: string;
   skillTree: {

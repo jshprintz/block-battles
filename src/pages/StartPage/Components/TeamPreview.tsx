@@ -1,29 +1,25 @@
 import styled from "styled-components";
 import { FlexRow, FlexCol } from "../../../styles/core/styles";
+import { IWarrior } from "../../../types/core";
 
-export const TeamPreview = () => {
+interface ITeamPreviewProps {
+  assembledTeam: IWarrior[];
+}
+
+export const TeamPreview: React.FC<ITeamPreviewProps> = ({ assembledTeam }) => {
   return (
     <TeamBox>
-      <TeamCard>
-        <div>Image</div>
-        <div>Class</div>
-      </TeamCard>
-      <TeamCard>
-        <div>Image</div>
-        <div>Class</div>
-      </TeamCard>
-      <TeamCard>
-        <div>Image</div>
-        <div>Class</div>
-      </TeamCard>
-      <TeamCard>
-        <div>Image</div>
-        <div>Class</div>
-      </TeamCard>
-      <TeamCard>
-        <div>Image</div>
-        <div>Class</div>
-      </TeamCard>
+      {assembledTeam.map((warrior) => {
+        const warriorName: string = warrior.name;
+        const classType: string = warrior.class;
+
+        return (
+          <TeamCard>
+            <div>{warriorName}</div>
+            <div>{classType}</div>
+          </TeamCard>
+        );
+      })}
     </TeamBox>
   );
 };
