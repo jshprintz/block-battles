@@ -7,14 +7,13 @@ import { Container, HeaderContainer } from "../LandingPage/LandingPage";
 import { IWarrior } from "../../types/core";
 import { TeamPreview } from "./Components/TeamPreview";
 import { WarriorCard } from "./Components/WarriorCard";
-import { warriors as warriorList } from "../../data/constants";
+import { warriors as warriorList } from "../../server/data/constants";
 
 const StartPage = () => {
   const [warriorNumber, setWarriorNumber] = useState(0);
   const [currentWarrior, setCurrentWarrior] = useState<IWarrior>(
     warriorList[warriorNumber]
   );
-  const [assembledTeam, setAssembledTeam] = useState<IWarrior[]>([]);
 
   const onLeftClick = () => {
     setWarriorNumber((prev) =>
@@ -54,7 +53,7 @@ const StartPage = () => {
         />
       </SelectionBoxContainer>
 
-      <TeamPreview assembledTeam={assembledTeam}/>
+      <TeamPreview/>
       <HomeButton to="/">Home</HomeButton>
     </StartPageContainer>
   );

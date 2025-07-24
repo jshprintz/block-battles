@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import { FlexRow, FlexCol } from "../../../styles/core/styles";
 import { IWarrior } from "../../../types/core";
+import { teamDataStore } from "../../../server/stores/TeamDataStore";
 
-interface ITeamPreviewProps {
-  assembledTeam: IWarrior[];
-}
+export const TeamPreview: React.FC = () => {
+  const assembledTeam = teamDataStore.assembledTeam;
 
-export const TeamPreview: React.FC<ITeamPreviewProps> = ({ assembledTeam }) => {
   return (
     <TeamBox>
-      {assembledTeam.map((warrior) => {
+      {assembledTeam.map((warrior: IWarrior) => {
         const warriorName: string = warrior.name;
         const classType: string = warrior.class;
 
