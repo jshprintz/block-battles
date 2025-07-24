@@ -1,5 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import { IWarrior } from "../../types/core";
+import { NUM_OF_WARRIORS_ON_TEAM } from "../../Constants";
 
 export class TeamDataStore {
   protected warriorList: IWarrior[] = [];
@@ -8,12 +9,16 @@ export class TeamDataStore {
     makeAutoObservable(this);
   }
 
-  addWarrior() {
-    console.log("Add Warrior");
+  addWarrior(selectedWarrior: IWarrior) {
+    if (this.warriorList.length === NUM_OF_WARRIORS_ON_TEAM) {
+      console.log("Cannot Add Warrior. Already at", NUM_OF_WARRIORS_ON_TEAM);
+    } else {
+      this.warriorList.push(selectedWarrior);
+    }
   }
 
-  removeWarrior() {
-    console.log("Remove Warrior");
+  removeWarrior(warriorIndex: number) {
+    this.warriorList.splice(warriorIndex, 1);
   }
 
   public get assembledTeam(): IWarrior[] {

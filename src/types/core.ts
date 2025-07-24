@@ -1,6 +1,7 @@
 interface IWarrior {
   name: string;
   class: string;
+  imgPath: string;
   description: string;
   skillTree: {
     power: number;
