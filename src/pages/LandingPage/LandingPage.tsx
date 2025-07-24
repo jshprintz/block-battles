@@ -7,7 +7,7 @@ function LandingPage() {
     <Container>
       <LandingPageContainer>
         <HeaderContainer>
-          <h1>Dungeon Battles</h1>
+          <h1>Block Battles</h1>
         </HeaderContainer>
         <Menu>
           <StartButton to="/start">
@@ -28,7 +28,7 @@ export const Container = styled(FlexCol)`
   overflow: hidden;
   justify-content: space-around;
 
-  font-family: "Megrim", system-ui;
+  font-family: "Barriecito", system-ui;
   font-weight: 400;
   font-style: normal;
 `;
