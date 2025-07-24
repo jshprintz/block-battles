@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Menu } from "../../LandingPage/LandingPage";
 import { COLORS, FlexRow } from "../../../styles/core/styles";
 import { IWarrior } from "../../../types/core";
+import { teamDataStore } from "../../../server/stores/TeamDataStore";
 
 interface IWarriorCodeProps {
   currentWarrior: IWarrior;
@@ -20,10 +21,11 @@ export const WarriorCard: React.FC<IWarriorCodeProps> = ({
   const conditioning = skillTree.conditioning;
   const speed = skillTree.speed;
   const health = skillTree.health;
-  const traits = currentWarrior.traits;
+  // Traits are Vuln and Dom
+  // const traits = currentWarrior.traits;
 
   const handleAddClick = () => {
-    console.log("Add Clicked!");
+    teamDataStore.addWarrior();
   };
 
   return (
