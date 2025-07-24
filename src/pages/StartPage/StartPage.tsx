@@ -7,11 +7,13 @@ import { Container, HeaderContainer } from "../LandingPage/LandingPage";
 import { IWarrior } from "../../types/core";
 import { TeamPreview } from "./Components/TeamPreview";
 import { WarriorCard } from "./Components/WarriorCard";
-import { warriors as warriorList } from "../../server/data/constants";
+import { warriors as warriorList } from "../../server/data/warriorData";
 import { observer } from "mobx-react-lite";
 
 const StartPage = observer(() => {
-  const [warriorNumber, setWarriorNumber] = useState(0);
+  const [warriorNumber, setWarriorNumber] = useState(
+    Math.floor(Math.random() * 5)
+  );
   const [currentWarrior, setCurrentWarrior] = useState<IWarrior>(
     warriorList[warriorNumber]
   );

@@ -16,12 +16,16 @@ export const TeamPreview: React.FC = observer(() => {
       {assembledTeam.map((warrior: IWarrior, warriorIndex: number) => {
         const warriorName: string = warrior.name;
         const classType: string = warrior.class;
+        const imgPath: string = warrior.imgPath;
 
         return (
           <TeamCard key={`Warrior-${warrior.name}-${warriorIndex}`}>
             <TeamCardDetails>
-              <div>{warriorName}</div>
-              <div>{classType}</div>
+              <TeamCardDetailsImg
+                src={imgPath}
+                alt={`${warriorName}-${classType}`}
+              />
+              <TeamCardDetailsLabel>{classType}</TeamCardDetailsLabel>
             </TeamCardDetails>
             <TeamCardBtnRow>
               <RemoveButton onClick={() => handleRemoveClick(warriorIndex)}>
@@ -43,7 +47,7 @@ const TeamBox = styled(FlexRow)`
 `;
 
 const TeamCard = styled(FlexCol)`
-  width: 15%;
+  width: 60px;
   height: 95%;
   border: 1px solid white;
   justify-content: space-between;
@@ -52,7 +56,18 @@ const TeamCard = styled(FlexCol)`
 
 const TeamCardDetails = styled(FlexCol)`
   height: 90%;
-  justify-content: space-around;
+  justify-content: space-between;
+`;
+
+const TeamCardDetailsImg = styled.img`
+  width: 50px;
+  margin-top: 5px;
+`;
+
+const TeamCardDetailsLabel = styled(FlexRow)`
+  height: 15px;
+  font-size: 10pt;
+  margin-bottom: 5px;
 `;
 
 const TeamCardBtnRow = styled(FlexRow)`

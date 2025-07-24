@@ -13,6 +13,7 @@ export const WarriorCard: React.FC<IWarriorCodeProps> = observer(
   ({ currentWarrior }) => {
     const warriorName: string = currentWarrior.name;
     const classType: string = currentWarrior.class;
+    const imgPath: string = currentWarrior.imgPath;
     const skillTree = currentWarrior.skillTree;
     const power = skillTree.power;
     const accuracy = skillTree.accuracy;
@@ -32,7 +33,7 @@ export const WarriorCard: React.FC<IWarriorCodeProps> = observer(
           <span>{warriorName}</span>
           <span>{classType}</span>
         </CardHeader>
-        <CardImage />
+        <CardImage src={imgPath} alt={`${warriorName}-${classType}`} />
         <CardStatsContainer>
           <CardStats>Power: {power}</CardStats>
           <CardStats>Accuracy: {accuracy}</CardStats>
@@ -51,8 +52,8 @@ export const WarriorCard: React.FC<IWarriorCodeProps> = observer(
 const SelectionBox = styled(Menu)`
   justify-content: space-between;
   border: 2px solid white;
-  width: 100%;
-  height: 80%;
+  width: 400px;
+  height: auto;
 `;
 
 const CardHeader = styled(FlexRow)`
@@ -61,15 +62,14 @@ const CardHeader = styled(FlexRow)`
   padding: 5px;
   justify-content: space-between;
   border-bottom: 2px solid white;
-
   user-select: none;
 `;
 
 const CardImage = styled.img`
-  height: 50%;
-  width: 100%;
-
-  border: 1px solid blue;
+  height: 200px;
+  width: 200px;
+  margin-top: 10px;
+  border-radius: 5px;
 `;
 
 const CardStatsContainer = styled.ul`
@@ -77,7 +77,6 @@ const CardStatsContainer = styled.ul`
   width: 100%;
   font-size: 110%;
   list-style: none;
-
   user-select: none;
 `;
 
