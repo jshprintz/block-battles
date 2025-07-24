@@ -54,7 +54,7 @@ const warriors = [
     name: "Ashley",
     class: "Assassin",
     description:
-      "He can't pick up a gallon of milk, but he can throw a dart piss drunk at 8 am and get relatively close to the board.",
+      "She can't pick up a gallon of milk, but she can throw a dart piss drunk on mimosas at 8 am and get relatively close to the board.",
     skillTree: {
       power: 1,
       accuracy: 3,

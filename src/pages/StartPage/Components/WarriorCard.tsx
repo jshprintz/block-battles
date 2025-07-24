@@ -3,51 +3,50 @@ import { Menu } from "../../LandingPage/LandingPage";
 import { COLORS, FlexRow } from "../../../styles/core/styles";
 import { IWarrior } from "../../../types/core";
 import { teamDataStore } from "../../../server/stores/TeamDataStore";
+import { observer } from "mobx-react-lite";
 
 interface IWarriorCodeProps {
   currentWarrior: IWarrior;
-  assembledTeam?: IWarrior[];
-  setAssembledTeam?: any;
 }
 
-export const WarriorCard: React.FC<IWarriorCodeProps> = ({
-  currentWarrior,
-}) => {
-  const warriorName: string = currentWarrior.name;
-  const classType: string = currentWarrior.class;
-  const skillTree = currentWarrior.skillTree;
-  const power = skillTree.power;
-  const accuracy = skillTree.accuracy;
-  const conditioning = skillTree.conditioning;
-  const speed = skillTree.speed;
-  const health = skillTree.health;
-  // Traits are Vuln and Dom
-  // const traits = currentWarrior.traits;
+export const WarriorCard: React.FC<IWarriorCodeProps> = observer(
+  ({ currentWarrior }) => {
+    const warriorName: string = currentWarrior.name;
+    const classType: string = currentWarrior.class;
+    const skillTree = currentWarrior.skillTree;
+    const power = skillTree.power;
+    const accuracy = skillTree.accuracy;
+    const conditioning = skillTree.conditioning;
+    const speed = skillTree.speed;
+    const health = skillTree.health;
+    // Traits are Vuln and Dom
+    // const traits = currentWarrior.traits;
 
-  const handleAddClick = () => {
-    teamDataStore.addWarrior();
-  };
+    const handleAddClick = () => {
+      teamDataStore.addWarrior(currentWarrior);
+    };
 
-  return (
-    <SelectionBox>
-      <CardHeader>
-        <span>{warriorName}</span>
-        <span>{classType}</span>
-      </CardHeader>
-      <CardImage />
-      <CardStatsContainer>
-        <CardStats>Power: {power}</CardStats>
-        <CardStats>Accuracy: {accuracy}</CardStats>
-        <CardStats>Conditioning: {conditioning}</CardStats>
-        <CardStats>Speed: {speed}</CardStats>
-        <CardStats>Health: {health}</CardStats>
-      </CardStatsContainer>
-      <AddButtonContainer>
-        <AddButton onClick={handleAddClick}>+</AddButton>
-      </AddButtonContainer>
-    </SelectionBox>
-  );
-};
+    return (
+      <SelectionBox>
+        <CardHeader>
+          <span>{warriorName}</span>
+          <span>{classType}</span>
+        </CardHeader>
+        <CardImage />
+        <CardStatsContainer>
+          <CardStats>Power: {power}</CardStats>
+          <CardStats>Accuracy: {accuracy}</CardStats>
+          <CardStats>Conditioning: {conditioning}</CardStats>
+          <CardStats>Speed: {speed}</CardStats>
+          <CardStats>Health: {health}</CardStats>
+        </CardStatsContainer>
+        <AddButtonContainer>
+          <AddButton onClick={handleAddClick}>+</AddButton>
+        </AddButtonContainer>
+      </SelectionBox>
+    );
+  }
+);
 
 const SelectionBox = styled(Menu)`
   justify-content: space-between;
