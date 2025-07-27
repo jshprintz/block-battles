@@ -4,7 +4,7 @@ const warriors = [
     class: "Brute",
     imgPath: "/block-battles/assets/images/warriors/BryanBrute.png",
     description:
-      "Lives by one rule: punch first, ask questions never. Doors don't open—they get destroyed. Can't read, but reading's for nerds.",
+      "Lives by one rule: punch first, ask questions never. Can't read, but reading's for nerds. You're a nerd for reading this far.",
     skillTree: {
       power: 3,
       accuracy: 1,

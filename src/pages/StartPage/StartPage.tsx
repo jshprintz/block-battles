@@ -9,10 +9,11 @@ import { TeamPreview } from "./Components/TeamPreview";
 import { WarriorCard } from "./Components/WarriorCard";
 import { warriors as warriorList } from "../../server/data/warriorData";
 import { observer } from "mobx-react-lite";
+import { NUM_OF_WARRIORS_ON_TEAM } from "../../Constants";
 
 const StartPage = observer(() => {
   const [warriorNumber, setWarriorNumber] = useState(
-    Math.floor(Math.random() * 5)
+    Math.floor(Math.random() * NUM_OF_WARRIORS_ON_TEAM)
   );
   const [currentWarrior, setCurrentWarrior] = useState<IWarrior>(
     warriorList[warriorNumber]
@@ -68,9 +69,9 @@ const StartPageContainer = styled(Container)`
 `;
 
 const StartPageHeader = styled(HeaderContainer)`
-  max-height: 20%;
-  border: 1px solid blue;
+  height: 15%;
   user-select: none;
+  margin: 5px;
 `;
 
 const CardDescription = styled(FlexRow)`
