@@ -3,9 +3,12 @@ import { FlexRow, FlexCol, COLORS } from "../../../styles/core/styles";
 import { IWarrior } from "../../../types/core";
 import { teamDataStore } from "../../../server/stores/TeamDataStore";
 import { observer } from "mobx-react-lite";
+import { NUM_OF_WARRIORS_ON_TEAM } from "../../../Constants";
+import { Link } from "react-router-dom";
 
 export const TeamPreview: React.FC = observer(() => {
   const assembledTeam = teamDataStore.assembledTeam;
+  const isTeamFull: boolean = assembledTeam.length === NUM_OF_WARRIORS_ON_TEAM;
 
   const handleRemoveClick = (warriorIndex: number) => {
     teamDataStore.removeWarrior(warriorIndex);
@@ -13,28 +16,35 @@ export const TeamPreview: React.FC = observer(() => {
 
   return (
     <TeamBox>
-      {assembledTeam.map((warrior: IWarrior, warriorIndex: number) => {
-        const warriorName: string = warrior.name;
-        const classType: string = warrior.class;
-        const imgPath: string = warrior.imgPath;
+      <TeamCardContainer>
+        {assembledTeam.map((warrior: IWarrior, warriorIndex: number) => {
+          const warriorName: string = warrior.name;
+          const classType: string = warrior.class;
+          const imgPath: string = warrior.imgPath;
 
-        return (
-          <TeamCard key={`Warrior-${warrior.name}-${warriorIndex}`}>
-            <TeamCardDetails>
-              <TeamCardDetailsImg
-                src={imgPath}
-                alt={`${warriorName}-${classType}`}
-              />
-              <TeamCardDetailsLabel>{classType}</TeamCardDetailsLabel>
-            </TeamCardDetails>
-            <TeamCardBtnRow>
-              <RemoveButton onClick={() => handleRemoveClick(warriorIndex)}>
-                -
-              </RemoveButton>
-            </TeamCardBtnRow>
-          </TeamCard>
-        );
-      })}
+          return (
+            <TeamCard key={`Warrior-${warrior.name}-${warriorIndex}`}>
+              <TeamCardDetails>
+                <TeamCardDetailsImg
+                  src={imgPath}
+                  alt={`${warriorName}-${classType}`}
+                />
+                <TeamCardDetailsLabel>{classType}</TeamCardDetailsLabel>
+              </TeamCardDetails>
+              <TeamCardBtnRow>
+                <RemoveButton onClick={() => handleRemoveClick(warriorIndex)}>
+                  -
+                </RemoveButton>
+              </TeamCardBtnRow>
+            </TeamCard>
+          );
+        })}
+      </TeamCardContainer>
+      {isTeamFull && (
+        <AssignSkillsContainer>
+          <AssignSkills to="/assign-skills">ASSIGN SKILLS</AssignSkills>
+        </AssignSkillsContainer>
+      )}
     </TeamBox>
   );
 });
@@ -43,7 +53,7 @@ const TeamBox = styled(FlexRow)`
   height: 200px;
   border-top: 2px solid white;
   border-bottom: 2px solid white;
-  justify-content: space-evenly;
+  justify-content: space-between;
 `;
 
 const TeamCard = styled(FlexCol)`
@@ -80,6 +90,39 @@ const RemoveButton = styled(FlexRow)`
   width: 20px;
   background-image: ${COLORS.REMOVE_BTN};
   border-radius: 50%;
+  cursor: pointer;
+
+  &:hover {
+    font-size: 150%;
+  }
+`;
+
+const TeamCardContainer = styled(FlexRow)`
+  width: 75%;
+  justify-content: space-evenly;
+`;
+
+const AssignSkillsContainer = styled(FlexRow)`
+  width: 25%;
+`;
+
+const AssignSkills = styled(Link)`
+  color: white;
+  text-decoration: none;
+
+  height: 50px;
+  width: 80%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  text-decoration: none;
+
+  background-image: ${COLORS.REG_BTN};
+  border-radius: 5px;
   cursor: pointer;
 
   &:hover {
