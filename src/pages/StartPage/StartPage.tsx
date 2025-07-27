@@ -84,7 +84,6 @@ const CardDescription = styled(FlexRow)`
 
 const SelectionBoxContainer = styled(FlexRow)`
   justify-content: space-evenly;
-  border: 1px solid yellow;
 `;
 
 const HomeButton = styled(Link)`

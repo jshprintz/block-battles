@@ -1,24 +1,44 @@
 import styled from "styled-components";
-import { COLORS, FlexCol } from "../../styles/core/styles";
+import { FlexCol, FlexRow } from "../../styles/core/styles";
 import { Link } from "react-router-dom";
+import { IWarrior } from "../../types/core";
+import { teamDataStore } from "../../server/stores/TeamDataStore";
+import { WarriorCardSkillPoints } from "./Components/WarriorCardSkillPoints";
 
 function AssignSkillsPage() {
+  const assembledTeam: IWarrior[] = teamDataStore.assembledTeam;
+  const availableSkillPoints: number = teamDataStore.bonusSkillPointCount;
+  const isLastSkill: boolean = availableSkillPoints === 1;
+
   return (
     <Container>
       <AssignSkillsPageContainer>
         <HeaderContainer>
-          <h1>ASSIGN SKILLS</h1>
+          {isLastSkill ? (
+            <h1>ONE MORE!</h1>
+          ) : (
+            <h1>ASSIGN {availableSkillPoints} SKILLS</h1>
+          )}
         </HeaderContainer>
+        <AssignSkillsCardsContainer>
+          {assembledTeam.map((warrior, warriorIndex) => {
+            return (
+              <WarriorCardSkillPoints
+                key={`${warrior.name}-${warrior.class}-${warriorIndex}`}
+                currentWarrior={warrior}
+              />
+            );
+          })}
+        </AssignSkillsCardsContainer>
       </AssignSkillsPageContainer>
     </Container>
   );
 }
 
 export const Container = styled(FlexCol)`
-  height: 99dvh;
   font-size: 100%;
-  overflow: hidden;
-  justify-content: space-around;
+  overflow: auto;
+  justify-content: space-between;
 
   font-family: "Barriecito", system-ui;
   font-weight: 400;
@@ -26,13 +46,19 @@ export const Container = styled(FlexCol)`
 `;
 
 const AssignSkillsPageContainer = styled(FlexCol)`
-  justify-content: space-around;
+  justify-content: space-between;
   color: white;
   background-color: black;
 `;
 
+const AssignSkillsCardsContainer = styled(FlexRow)`
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+`;
+
 export const HeaderContainer = styled(FlexCol)`
-  height: auto;
+  height: 200px;
   text-align: center;
   font-size: 300%;
 `;
@@ -64,15 +90,6 @@ const MenuButton = styled(Link)`
   &:hover {
     transform: scale(1.02);
   }
-`;
-
-const StartButton = styled(MenuButton)`
-  background-image: ${COLORS.START_BTN};
-  font-size: 350%;
-`;
-
-const RegularMenuButton = styled(MenuButton)`
-  background-image: ${COLORS.REG_BTN};
 `;
 
 export default AssignSkillsPage;

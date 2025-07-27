@@ -25,14 +25,12 @@ function LandingPage() {
 export const Container = styled(FlexCol)`
   height: 99dvh;
   font-size: 100%;
-  overflow: hidden;
+  overflow: auto;
   justify-content: space-around;
 
   font-family: "Barriecito", system-ui;
   font-weight: 400;
   font-style: normal;
-
-
 `;
 
 const LandingPageContainer = styled(FlexCol)`
