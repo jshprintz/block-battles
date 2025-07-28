@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import { IWarrior } from "../../types/core";
 import { teamDataStore } from "../../server/stores/TeamDataStore";
 import { WarriorCardSkillPoints } from "./Components/WarriorCardSkillPoints";
+import { observer } from "mobx-react-lite";
 
-function AssignSkillsPage() {
+const AssignSkillsPage = observer(() => {
   const assembledTeam: IWarrior[] = teamDataStore.assembledTeam;
   const availableSkillPoints: number = teamDataStore.bonusSkillPointCount;
   const isLastSkill: boolean = availableSkillPoints === 1;
@@ -33,7 +34,7 @@ function AssignSkillsPage() {
       </AssignSkillsPageContainer>
     </Container>
   );
-}
+});
 
 export const Container = styled(FlexCol)`
   font-size: 100%;

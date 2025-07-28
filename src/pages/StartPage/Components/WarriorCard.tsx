@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Menu } from "../../LandingPage/LandingPage";
 import { COLORS, FlexRow } from "../../../styles/core/styles";
-import { IWarrior } from "../../../types/core";
+import { ISkillTree, IWarrior } from "../../../types/core";
 import { teamDataStore } from "../../../server/stores/TeamDataStore";
 import { observer } from "mobx-react-lite";
 
@@ -23,8 +23,11 @@ export const WarriorCard: React.FC<IWarriorCodeProps> = observer(
     // Traits are Vuln and Dom
     // const traits = currentWarrior.traits;
 
+    // When I add to the list, I have to have a way to add the store with it.
     const handleAddClick = () => {
-      teamDataStore.addWarrior(currentWarrior);
+      const current = currentWarrior;
+      current.id = crypto.randomUUID();
+      teamDataStore.addWarrior(current);
     };
 
     return (

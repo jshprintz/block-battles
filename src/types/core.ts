@@ -1,5 +1,6 @@
 interface IWarrior {
   name: string;
+  id: string;
   class: string;
   imgPath: string;
   description: string;

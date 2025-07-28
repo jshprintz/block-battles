@@ -1,9 +1,12 @@
 import { makeAutoObservable } from "mobx";
-import { IWarrior } from "../../types/core";
+import { ISkillTree, IWarrior } from "../../types/core";
 import {
+  MAX_NUM_OF_ASSIGNED_SKILLS,
   NUM_OF_BONUS_SKILL_POINTS,
   NUM_OF_WARRIORS_ON_TEAM,
 } from "../../Constants";
+import { action } from "mobx";
+import { warriors } from "../data/warriorData";
 
 export class TeamDataStore {
   protected warriorList: IWarrior[] = [];
@@ -11,7 +14,14 @@ export class TeamDataStore {
   protected bonusSkillPoints: number = NUM_OF_BONUS_SKILL_POINTS;
 
   constructor() {
-    makeAutoObservable(this);
+    makeAutoObservable(this, {
+      addWarrior: action,
+      removeWarrior: action,
+      addSkillPoint: action,
+      removeSkillPoint: action,
+      bonusSkillPointCount: false,
+      increaseWarriorSkill: action,
+    });
   }
 
   // Adds warrior to user assembled list
@@ -54,9 +64,43 @@ export class TeamDataStore {
     return this.bonusSkillPoints;
   }
 
-  // Sets the count to the passed value.
+  // Sets the number of bonus skill points that are available
   public set bonusSkillPointCount(bonusSkillPoints: number) {
-    this.bonusSkillPointCount = bonusSkillPoints;
+    this.bonusSkillPoints = bonusSkillPoints;
+  }
+
+  @action
+  increaseWarriorSkill(warriorIndex: string, skill: keyof ISkillTree) {
+    const warrior = this.warriorList.find((w) => w.id === warriorIndex);
+    if (!warrior) return;
+
+    const currentValue = warrior.skillTree[skill];
+    const hasAvailSkillPoints = this.bonusSkillPointCount > 0;
+
+    if (currentValue < MAX_NUM_OF_ASSIGNED_SKILLS && hasAvailSkillPoints) {
+      warrior.skillTree[skill]++;
+      this.bonusSkillPointCount--;
+    }
+  }
+
+  @action
+  decreaseWarriorSkill(warriorIndex: string, skill: keyof ISkillTree) {
+    const warrior = this.warriorList.find((w) => w.id === warriorIndex);
+    if (!warrior) return;
+
+    const originalWarrior = warriors.find((w) => w.id === warrior.id);
+    if (!originalWarrior) return;
+
+    const currentValue = warrior.skillTree[skill];
+    const originalValue = originalWarrior.skillTree[skill];
+    const isAtMaxPoints =
+      this.bonusSkillPointCount === NUM_OF_BONUS_SKILL_POINTS;
+
+    // Prevent decreasing below original value
+    if (currentValue > originalValue && !isAtMaxPoints) {
+      warrior.skillTree[skill]--;
+      this.bonusSkillPointCount++;
+    }
   }
 }
 

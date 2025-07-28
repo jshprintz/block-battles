@@ -3,6 +3,7 @@ import { CLASS_TYPES } from "../../Constants";
 const warriors = [
   {
     name: "Bryan",
+    id: "",
     class: CLASS_TYPES.BRUTE,
     imgPath: "/block-battles/assets/images/warriors/BryanBrute.png",
     description:
@@ -21,6 +22,7 @@ const warriors = [
   },
   {
     name: "Wally",
+    id: "",
     class: CLASS_TYPES.WIZARD,
     imgPath: "/block-battles/assets/images/warriors/WallyWizard.png",
     description:
@@ -39,6 +41,7 @@ const warriors = [
   },
   {
     name: "Henrietta",
+    id: "",
     class: CLASS_TYPES.HEALER,
     imgPath: "/block-battles/assets/images/warriors/HenriettaHealer.png",
     description:
@@ -57,6 +60,7 @@ const warriors = [
   },
   {
     name: "Ashley",
+    id: "",
     class: CLASS_TYPES.ASSASSIN,
     imgPath: "/block-battles/assets/images/warriors/AshleyAssassin.png",
     description:
@@ -75,6 +79,7 @@ const warriors = [
   },
   {
     name: "Tommy",
+    id: "",
     class: CLASS_TYPES.TANK,
     imgPath: "/block-battles/assets/images/warriors/TommyTank.png",
     description:

@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import { Menu } from "../../LandingPage/LandingPage";
 import { COLORS, FlexRow } from "../../../styles/core/styles";
-import { IWarrior } from "../../../types/core";
+import { ISkillTree, IWarrior } from "../../../types/core";
 import { teamDataStore } from "../../../server/stores/TeamDataStore";
 import { observer } from "mobx-react-lite";
+import { warriors } from "../../../server/data/warriorData";
+import { SKILL_TYPES } from "../../../Constants";
 
 interface IWarriorCardSkillPointsProps {
   currentWarrior: IWarrior;
@@ -11,15 +13,34 @@ interface IWarriorCardSkillPointsProps {
 
 export const WarriorCardSkillPoints: React.FC<IWarriorCardSkillPointsProps> =
   observer(({ currentWarrior }) => {
-    const warriorName: string = currentWarrior.name;
-    const classType: string = currentWarrior.class;
-    const imgPath: string = currentWarrior.imgPath;
-    const skillTree = currentWarrior.skillTree;
-    const power = skillTree.power;
-    const accuracy = skillTree.accuracy;
-    const conditioning = skillTree.conditioning;
-    const speed = skillTree.speed;
-    const health = skillTree.health;
+    const warrior = teamDataStore.assembledTeam.find((warrior) => {
+      return warrior.id === currentWarrior.id;
+    });
+
+    if (!warrior) {
+      console.error("No Warrior Detected");
+      return null;
+    }
+
+    const originalData = warriors.find((warrior) => {
+      return warrior.class === currentWarrior.class;
+    });
+
+    if (!originalData) {
+      console.error("No Original Data Detected");
+      return null;
+    }
+
+    const warriorName: string = warrior.name;
+    const classType: string = warrior.class;
+    const imgPath: string = warrior.imgPath;
+    const skillTree = warrior.skillTree;
+    const power: number = skillTree.power;
+    const accuracy: number = skillTree.accuracy;
+    const conditioning: number = skillTree.conditioning;
+    const speed: number = skillTree.speed;
+    const health: number = skillTree.health;
+
     // Traits are Vuln and Dom
     // const traits = currentWarrior.traits;
 
@@ -32,29 +53,129 @@ export const WarriorCardSkillPoints: React.FC<IWarriorCardSkillPointsProps> =
         <CardImage src={imgPath} alt={`${warriorName}-${classType}`} />
         <CardStatsContainer>
           <CardStats>
-            <AddButtonRow>
-              <AddButton>+</AddButton>Power: {power}
-            </AddButtonRow>
+            <ButtonRow>
+              <RemoveButton
+                onClick={() =>
+                  teamDataStore.decreaseWarriorSkill(
+                    currentWarrior.id,
+                    SKILL_TYPES.POWER as keyof ISkillTree
+                  )
+                }
+              >
+                -
+              </RemoveButton>
+              <AddButton
+                onClick={() =>
+                  teamDataStore.increaseWarriorSkill(
+                    currentWarrior.id,
+                    SKILL_TYPES.POWER as keyof ISkillTree
+                  )
+                }
+              >
+                +
+              </AddButton>
+              Power: {power}
+            </ButtonRow>
           </CardStats>
           <CardStats>
-            <AddButtonRow>
-              <AddButton>+</AddButton>Accuracy: {accuracy}
-            </AddButtonRow>
+            <ButtonRow>
+              <RemoveButton
+                onClick={() =>
+                  teamDataStore.decreaseWarriorSkill(
+                    currentWarrior.id,
+                    SKILL_TYPES.ACCURACY as keyof ISkillTree
+                  )
+                }
+              >
+                -
+              </RemoveButton>
+              <AddButton
+                onClick={() =>
+                  teamDataStore.increaseWarriorSkill(
+                    currentWarrior.id,
+                    SKILL_TYPES.ACCURACY as keyof ISkillTree
+                  )
+                }
+              >
+                +
+              </AddButton>
+              Accuracy: {accuracy}
+            </ButtonRow>
           </CardStats>
           <CardStats>
-            <AddButtonRow>
-              <AddButton>+</AddButton>Conditioning: {conditioning}
-            </AddButtonRow>
+            <ButtonRow>
+              <RemoveButton
+                onClick={() =>
+                  teamDataStore.decreaseWarriorSkill(
+                    currentWarrior.id,
+                    SKILL_TYPES.CONDITIONING as keyof ISkillTree
+                  )
+                }
+              >
+                -
+              </RemoveButton>
+              <AddButton
+                onClick={() =>
+                  teamDataStore.increaseWarriorSkill(
+                    currentWarrior.id,
+                    SKILL_TYPES.CONDITIONING as keyof ISkillTree
+                  )
+                }
+              >
+                +
+              </AddButton>
+              Conditioning: {conditioning}
+            </ButtonRow>
           </CardStats>
           <CardStats>
-            <AddButtonRow>
-              <AddButton>+</AddButton>Speed: {speed}
-            </AddButtonRow>
+            <ButtonRow>
+              <RemoveButton
+                onClick={() =>
+                  teamDataStore.decreaseWarriorSkill(
+                    currentWarrior.id,
+                    SKILL_TYPES.SPEED as keyof ISkillTree
+                  )
+                }
+              >
+                -
+              </RemoveButton>
+              <AddButton
+                onClick={() =>
+                  teamDataStore.increaseWarriorSkill(
+                    currentWarrior.id,
+                    SKILL_TYPES.SPEED as keyof ISkillTree
+                  )
+                }
+              >
+                +
+              </AddButton>
+              Speed: {speed}
+            </ButtonRow>
           </CardStats>
           <CardStats>
-            <AddButtonRow>
-              <AddButton>+</AddButton>Health: {health}
-            </AddButtonRow>
+            <ButtonRow>
+              <RemoveButton
+                onClick={() =>
+                  teamDataStore.decreaseWarriorSkill(
+                    currentWarrior.id,
+                    SKILL_TYPES.HEALTH as keyof ISkillTree
+                  )
+                }
+              >
+                -
+              </RemoveButton>
+              <AddButton
+                onClick={() =>
+                  teamDataStore.increaseWarriorSkill(
+                    currentWarrior.id,
+                    SKILL_TYPES.HEALTH as keyof ISkillTree
+                  )
+                }
+              >
+                +
+              </AddButton>
+              Health: {health}
+            </ButtonRow>
           </CardStats>
         </CardStatsContainer>
       </SelectionBox>
@@ -98,7 +219,7 @@ const CardStats = styled.li`
   margin-bottom: 5px;
 `;
 
-const AddButtonRow = styled(FlexRow)`
+const ButtonRow = styled(FlexRow)`
   justify-content: flex-start;
 `;
 
@@ -106,6 +227,14 @@ const AddButton = styled(FlexRow)`
   width: 20px;
   margin: 5px;
   background-image: ${COLORS.START_BTN};
+  border-radius: 50%;
+  cursor: pointer;
+`;
+
+const RemoveButton = styled(FlexRow)`
+  width: 20px;
+  margin: 5px;
+  background-image: ${COLORS.REMOVE_BTN};
   border-radius: 50%;
   cursor: pointer;
 `;
