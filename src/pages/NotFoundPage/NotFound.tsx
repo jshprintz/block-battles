@@ -17,25 +17,27 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #f8f9fa;
+  background-color: black;
   text-align: center;
+
+  overflow: hidden;
 `;
 
 const Title = styled.h1`
   font-size: 4rem;
-  color: #343a40;
+  color: #535558;
 `;
 
 const Message = styled.p`
   font-size: 1.25rem;
-  color: #6c757d;
+  color: #535558;
   margin: 1rem 0;
 `;
 
 const StyledLink = styled(Link)`
   margin-top: 1.5rem;
   font-size: 1rem;
-  color: #007bff;
+  color: #936221;
   text-decoration: none;
 
   &:hover {

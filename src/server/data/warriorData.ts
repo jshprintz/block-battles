@@ -1,7 +1,10 @@
+import { CLASS_TYPES } from "../../Constants";
+
 const warriors = [
   {
     name: "Bryan",
-    class: "Brute",
+    id: "",
+    class: CLASS_TYPES.BRUTE,
     imgPath: "/block-battles/assets/images/warriors/BryanBrute.png",
     description:
       "Lives by one rule: punch first, ask questions never. Can't read, but reading's for nerds. You're a nerd for reading this far.",
@@ -13,13 +16,14 @@ const warriors = [
       health: 3,
     },
     traits: {
-      dominate: "Healer",
-      vulnerable: "Assassin",
+      dominate: CLASS_TYPES.HEALER,
+      vulnerable: CLASS_TYPES.ASSASSIN,
     },
   },
   {
     name: "Wally",
-    class: "Wizard",
+    id: "",
+    class: CLASS_TYPES.WIZARD,
     imgPath: "/block-battles/assets/images/warriors/WallyWizard.png",
     description:
       "Speaks fluent gibberish and wears his bathrobe 24/7, this Wizard has the power to creep out all the girls at the bar.",
@@ -31,13 +35,14 @@ const warriors = [
       health: 3,
     },
     traits: {
-      dominate: "Tank",
-      vulnerable: "Healer",
+      dominate: CLASS_TYPES.TANK,
+      vulnerable: CLASS_TYPES.HEALER,
     },
   },
   {
     name: "Henrietta",
-    class: "Healer",
+    id: "",
+    class: CLASS_TYPES.HEALER,
     imgPath: "/block-battles/assets/images/warriors/HenriettaHealer.png",
     description:
       "Powered with Italian mother level of passive aggression, this Healer will never let you forget that one time they helped you.",
@@ -49,13 +54,14 @@ const warriors = [
       health: 5,
     },
     traits: {
-      dominate: "Wizard",
-      vulnerable: "Brute",
+      dominate: CLASS_TYPES.WIZARD,
+      vulnerable: CLASS_TYPES.BRUTE,
     },
   },
   {
     name: "Ashley",
-    class: "Assassin",
+    id: "",
+    class: CLASS_TYPES.ASSASSIN,
     imgPath: "/block-battles/assets/images/warriors/AshleyAssassin.png",
     description:
       "She can't pick up a gallon of milk, but she can throw a dart piss drunk on mimosas at 8 am and get relatively close to the board.",
@@ -67,13 +73,14 @@ const warriors = [
       health: 3,
     },
     traits: {
-      dominate: "Brute",
-      vulnerable: "Tank",
+      dominate: CLASS_TYPES.BRUTE,
+      vulnerable: CLASS_TYPES.TANK,
     },
   },
   {
     name: "Tommy",
-    class: "Tank",
+    id: "",
+    class: CLASS_TYPES.TANK,
     imgPath: "/block-battles/assets/images/warriors/TommyTank.png",
     description:
       "Oddly compassionate to the point where it's weird, this Tank will protect your skills, but will talk a lot about their problems.",
@@ -85,8 +92,8 @@ const warriors = [
       health: 3,
     },
     traits: {
-      dominate: "Assassin",
-      vulnerable: "Wizard",
+      dominate: CLASS_TYPES.ASSASSIN,
+      vulnerable: CLASS_TYPES.WIZARD,
     },
   },
 ];
