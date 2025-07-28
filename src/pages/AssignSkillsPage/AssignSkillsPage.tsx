@@ -10,6 +10,7 @@ const AssignSkillsPage = observer(() => {
   const assembledTeam: IWarrior[] = teamDataStore.assembledTeam;
   const availableSkillPoints: number = teamDataStore.bonusSkillPointCount;
   const isLastSkill: boolean = availableSkillPoints === 1;
+  const isNoSkills: boolean = availableSkillPoints === 0;
 
   return (
     <Container>
@@ -17,6 +18,8 @@ const AssignSkillsPage = observer(() => {
         <HeaderContainer>
           {isLastSkill ? (
             <h1>ONE MORE!</h1>
+          ) : isNoSkills ? (
+            <h1>LET'S GO!!!</h1>
           ) : (
             <h1>ASSIGN {availableSkillPoints} SKILLS</h1>
           )}
