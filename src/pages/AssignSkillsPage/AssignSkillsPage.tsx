@@ -1,9 +1,10 @@
-import styled from "styled-components";
-import { FlexCol, FlexRow } from "../../styles/core/styles";
+import styled, { css } from "styled-components";
+import { COLORS, FlexCol, FlexRow } from "../../styles/core/styles";
 import { IWarrior } from "../../types/core";
 import { teamDataStore } from "../../server/stores/TeamDataStore";
 import { WarriorCardSkillPoints } from "./Components/WarriorCardSkillPoints";
 import { observer } from "mobx-react-lite";
+import { Link } from "react-router-dom";
 
 const AssignSkillsPage = observer(() => {
   const assembledTeam: IWarrior[] = teamDataStore.assembledTeam;
@@ -18,7 +19,10 @@ const AssignSkillsPage = observer(() => {
           {isLastSkill ? (
             <h1>ONE MORE!</h1>
           ) : isNoSkills ? (
-            <h1>LET'S GO!!!</h1>
+            <FlexRow>
+              <h1>LET'S</h1>
+              <BattleButton to={"/battle-lobby"}>GO!</BattleButton>
+            </FlexRow>
           ) : (
             <h1>ASSIGN {availableSkillPoints} SKILLS</h1>
           )}
@@ -64,6 +68,31 @@ const HeaderContainer = styled(FlexCol)`
   height: 200px;
   text-align: center;
   font-size: 300%;
+`;
+
+const BattleButton = styled(Link)`
+  width: auto;
+  padding: 0px 15px;
+  margin: 15px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: #ffffff;
+  text-decoration: none;
+
+  border-radius: 5px;
+  transition: transform 200ms ease-in;
+  cursor: pointer;
+  font-size: 200%;
+
+  background: ${COLORS.START_BTN};
+
+  &:hover {
+    transform: scale(1.02);
+  }
 `;
 
 export default AssignSkillsPage;

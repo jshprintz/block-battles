@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { FlexCol } from "../../styles/core/styles";
 import styled from "styled-components";
+import { observer } from "mobx-react-lite";
 
-const RulesPage = () => {
+const RulesPage: React.FC = observer(() => {
   return (
     <RulesContainer>
       <HeaderContainer>
@@ -12,7 +13,7 @@ const RulesPage = () => {
       <Link to="/">Return Home</Link>
     </RulesContainer>
   );
-};
+});
 
 const RulesContainer = styled(FlexCol)`
   justify-content: space-around;
