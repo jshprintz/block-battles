@@ -14,7 +14,7 @@ function BattleLobbyPage() {
   );
 }
 
-export const Container = styled(FlexCol)`
+const Container = styled(FlexCol)`
   height: 99dvh;
   font-size: 100%;
   overflow: auto;
@@ -31,13 +31,13 @@ const BattleLobbyPageContainer = styled(FlexCol)`
   background-color: black;
 `;
 
-export const HeaderContainer = styled(FlexCol)`
+const HeaderContainer = styled(FlexCol)`
   height: auto;
   text-align: center;
   font-size: 300%;
 `;
 
-export const Menu = styled(FlexCol)`
+const Menu = styled(FlexCol)`
   height: 50%;
   width: 75%;
   justify-content: space-evenly;
