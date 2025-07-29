@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import { FlexCol, FlexRow } from "../../styles/core/styles";
-import { Link } from "react-router-dom";
+import styled, { css } from "styled-components";
+import { COLORS, FlexCol, FlexRow } from "../../styles/core/styles";
 import { IWarrior } from "../../types/core";
 import { teamDataStore } from "../../server/stores/TeamDataStore";
 import { WarriorCardSkillPoints } from "./Components/WarriorCardSkillPoints";
 import { observer } from "mobx-react-lite";
+import { Link } from "react-router-dom";
 
 const AssignSkillsPage = observer(() => {
   const assembledTeam: IWarrior[] = teamDataStore.assembledTeam;
@@ -19,7 +19,10 @@ const AssignSkillsPage = observer(() => {
           {isLastSkill ? (
             <h1>ONE MORE!</h1>
           ) : isNoSkills ? (
-            <h1>LET'S GO!!!</h1>
+            <FlexRow>
+              <h1>LET'S</h1>
+              <BattleButton to={"/battle-lobby"}>GO!</BattleButton>
+            </FlexRow>
           ) : (
             <h1>ASSIGN {availableSkillPoints} SKILLS</h1>
           )}
@@ -39,7 +42,7 @@ const AssignSkillsPage = observer(() => {
   );
 });
 
-export const Container = styled(FlexCol)`
+const Container = styled(FlexCol)`
   font-size: 100%;
   overflow: auto;
   justify-content: space-between;
@@ -61,35 +64,31 @@ const AssignSkillsCardsContainer = styled(FlexRow)`
   justify-content: space-evenly;
 `;
 
-export const HeaderContainer = styled(FlexCol)`
+const HeaderContainer = styled(FlexCol)`
   height: 200px;
   text-align: center;
   font-size: 300%;
 `;
 
-export const Menu = styled(FlexCol)`
-  height: 50%;
-  width: 75%;
-  justify-content: space-evenly;
-  border-radius: 5px;
-`;
-
-const MenuButton = styled(Link)`
-  height: 25%;
-  width: 50%;
+const BattleButton = styled(Link)`
+  width: auto;
+  padding: 0px 15px;
+  margin: 15px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  color: white;
+  color: #ffffff;
   text-decoration: none;
 
   border-radius: 5px;
   transition: transform 200ms ease-in;
   cursor: pointer;
-  font-size: 300%;
+  font-size: 200%;
+
+  background: ${COLORS.START_BTN};
 
   &:hover {
     transform: scale(1.02);

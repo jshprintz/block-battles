@@ -6,13 +6,9 @@ import { observer } from "mobx-react-lite";
 import { NUM_OF_WARRIORS_ON_TEAM } from "../../../Constants";
 import { Link } from "react-router-dom";
 
-export const TeamPreview: React.FC = observer(() => {
+export const BattleLobbyTeamPreview: React.FC = observer(() => {
   const assembledTeam = teamDataStore.assembledTeam;
-  const isTeamFull: boolean = assembledTeam.length === NUM_OF_WARRIORS_ON_TEAM;
 
-  const handleRemoveClick = (warriorIndex: number) => {
-    teamDataStore.removeWarrior(warriorIndex);
-  };
 
   return (
     <TeamBox>
@@ -31,20 +27,10 @@ export const TeamPreview: React.FC = observer(() => {
                 />
                 <TeamCardDetailsLabel>{classType}</TeamCardDetailsLabel>
               </TeamCardDetails>
-              <TeamCardBtnRow>
-                <RemoveButton onClick={() => handleRemoveClick(warriorIndex)}>
-                  -
-                </RemoveButton>
-              </TeamCardBtnRow>
             </TeamCard>
           );
         })}
       </TeamCardContainer>
-      {isTeamFull && (
-        <AssignSkillsContainer>
-          <AssignSkills to="/assign-skills">ASSIGN SKILLS</AssignSkills>
-        </AssignSkillsContainer>
-      )}
     </TeamBox>
   );
 });
@@ -57,7 +43,7 @@ const TeamBox = styled(FlexRow)`
 `;
 
 const TeamCard = styled(FlexCol)`
-  width: 60px;
+  width: 120px;
   height: 95%;
   border: 1px solid white;
   justify-content: space-between;
@@ -70,7 +56,7 @@ const TeamCardDetails = styled(FlexCol)`
 `;
 
 const TeamCardDetailsImg = styled.img`
-  width: 50px;
+  width: 110px;
   margin-top: 5px;
 `;
 
@@ -80,53 +66,10 @@ const TeamCardDetailsLabel = styled(FlexRow)`
   margin-bottom: 5px;
 `;
 
-const TeamCardBtnRow = styled(FlexRow)`
-  height: 20px;
-  justify-content: flex-end;
-`;
-
-const RemoveButton = styled(FlexRow)`
-  height: 20px;
-  width: 20px;
-  background-image: ${COLORS.REMOVE_BTN};
-  border-radius: 50%;
-  cursor: pointer;
-
-  &:hover {
-    font-size: 150%;
-  }
-`;
-
 const TeamCardContainer = styled(FlexRow)`
-  width: 75%;
+  width: 100%;
   justify-content: space-evenly;
 `;
 
-const AssignSkillsContainer = styled(FlexRow)`
-  width: 25%;
-`;
 
-const AssignSkills = styled(Link)`
-  color: white;
-  text-decoration: none;
 
-  height: 50px;
-  width: 80%;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  color: white;
-  text-decoration: none;
-
-  background-image: ${COLORS.REG_BTN};
-  border-radius: 5px;
-  cursor: pointer;
-
-  &:hover {
-    font-size: 150%;
-  }
-`;

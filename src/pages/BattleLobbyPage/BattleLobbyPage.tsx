@@ -1,20 +1,35 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { COLORS, FlexCol } from "../../styles/core/styles";
 import { Link } from "react-router-dom";
+import { observer } from "mobx-react-lite";
+import { BattleLobbyTeamPreview } from "./Components/BattleLobbyTeamPreview";
 
-function BattleLobbyPage() {
+const BattleLobbyPage: React.FC = observer(() => {
   return (
     <Container>
       <BattleLobbyPageContainer>
         <HeaderContainer>
           <h1>BATTLE LOBBY</h1>
         </HeaderContainer>
+        <Menu>
+          <OnlineButton $isDisabled={true} to="/battle-lobby">
+            <p>Online</p>
+          </OnlineButton>
+          <CloseByButton $isDisabled={true} to="/battle-lobby">
+            <p>Close By</p>
+          </CloseByButton>
+          <ComputerButton $isDisabled={false} to="/rules">
+            <p>Computer</p>
+          </ComputerButton>
+        </Menu>
+        <BattleLobbyTeamPreview></BattleLobbyTeamPreview>
       </BattleLobbyPageContainer>
+      <Link to="/">Return Home</Link>
     </Container>
   );
-}
+});
 
-export const Container = styled(FlexCol)`
+const Container = styled(FlexCol)`
   height: 99dvh;
   font-size: 100%;
   overflow: auto;
@@ -31,22 +46,22 @@ const BattleLobbyPageContainer = styled(FlexCol)`
   background-color: black;
 `;
 
-export const HeaderContainer = styled(FlexCol)`
-  height: auto;
+const HeaderContainer = styled(FlexCol)`
+  height: 200px;
   text-align: center;
   font-size: 300%;
 `;
 
-export const Menu = styled(FlexCol)`
+const Menu = styled(FlexCol)`
   height: 50%;
   width: 75%;
   justify-content: space-evenly;
   border-radius: 5px;
 `;
 
-const MenuButton = styled(Link)`
+const MenuButton = styled(Link)<{ $isDisabled: boolean }>`
   height: 25%;
-  width: 50%;
+  width: 250px;
 
   display: flex;
   flex-direction: column;
@@ -64,14 +79,26 @@ const MenuButton = styled(Link)`
   &:hover {
     transform: scale(1.02);
   }
+
+  ${(p) =>
+    p.$isDisabled &&
+    css`
+      pointer-events: none;
+      cursor: default;
+      opacity: 0.5;
+      text-decoration: none;
+    `}
 `;
 
-const StartButton = styled(MenuButton)`
+const OnlineButton = styled(MenuButton)`
   background-image: ${COLORS.START_BTN};
-  font-size: 350%;
 `;
 
-const RegularMenuButton = styled(MenuButton)`
+const CloseByButton = styled(MenuButton)`
+  background-image: ${COLORS.REG_BTN};
+`;
+
+const ComputerButton = styled(MenuButton)`
   background-image: ${COLORS.REG_BTN};
 `;
 
