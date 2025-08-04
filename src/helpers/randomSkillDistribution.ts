@@ -5,14 +5,15 @@ import {
 } from "../Constants";
 import { IWarrior } from "../types/core";
 
-function randomSkillDistribution(warriorList: IWarrior[]): IWarrior[] {
+const randomSkillDistribution = (warriorList: IWarrior[]): IWarrior[] => {
   let assignedPoints = 0;
+  console.log("Warrior List", warriorList);
 
   while (assignedPoints < NUM_OF_BONUS_SKILL_POINTS) {
     const randomWarriorIndex = Math.floor(
       Math.random() * NUM_OF_WARRIORS_ON_TEAM
     );
-    const warrior = warriorList[randomWarriorIndex];
+    const warrior: IWarrior = warriorList[randomWarriorIndex];
 
     const skillKeys = Object.keys(warrior.skillTree);
     const randomSkillKey =
@@ -25,6 +26,6 @@ function randomSkillDistribution(warriorList: IWarrior[]): IWarrior[] {
   }
 
   return warriorList;
-}
+};
 
 export { randomSkillDistribution };

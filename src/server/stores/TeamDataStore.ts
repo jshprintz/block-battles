@@ -106,3 +106,4 @@ export class TeamDataStore {
 
 // Create a singleton instance
 export const teamDataStore = new TeamDataStore();
+export const computerTeamDataStore = new TeamDataStore();
