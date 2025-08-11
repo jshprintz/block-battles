@@ -26,9 +26,6 @@ export class ComputerTeamDataStore {
 
   // Adds warrior to user assembled list
   addWarrior(selectedWarrior: IWarrior) {
-    console.log("warrior list", this.warriorList, this.warriorList.length);
-    console.log("NUM_OF_WARRIORS_ON_TEAM", NUM_OF_WARRIORS_ON_TEAM);
-
     if (this.warriorList.length === NUM_OF_WARRIORS_ON_TEAM) {
       console.log("Cannot Add Warrior. Already at", NUM_OF_WARRIORS_ON_TEAM);
     } else {

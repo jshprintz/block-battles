@@ -23,11 +23,7 @@ const ComputerBattlePage: React.FC = observer(() => {
       computerTeamDataStore.addWarrior(randomWarrior);
     }
 
-    
-    randomSkillDistribution(
-      computerTeamDataStore.assembledTeam,
-      computerTeamDataStore.bonusSkillPointCount
-    );
+    randomSkillDistribution(computerTeamDataStore);
   }, []);
 
   useEffect(() => {
@@ -70,7 +66,7 @@ const ComputerBattlePage: React.FC = observer(() => {
                     <li>Total: {total}</li>
                     <li>Diff: {total - 9}</li>
                   </ul>
-                  <p style={{ textAlign: "center" }}>{warrior.id}</p>
+                  
                 </FlexCol>
               );
             })}
