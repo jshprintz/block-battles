@@ -7,7 +7,11 @@ import { useCallback, useEffect, useState } from "react";
 import { warriors } from "../../../server/data/warriorData";
 import { NUM_OF_WARRIORS_ON_TEAM } from "../../../Constants";
 import { randomSkillDistribution } from "../../../helpers/randomSkillDistribution";
-import { computerTeamDataStore } from "../../../server/stores/ComputerTeamDataStore";
+import {
+  computerTeamDataStore,
+  teamDataStore,
+} from "../../../server/stores/TeamDataStore";
+import { WarriorCard } from "./Components/WarriorCard";
 
 const ComputerBattlePage: React.FC = observer(() => {
   const setupComputerTeam = useCallback(() => {
@@ -36,39 +40,19 @@ const ComputerBattlePage: React.FC = observer(() => {
         <HeaderContainer>
           <h1>COMPUTER BATTLE</h1>
         </HeaderContainer>
+        <h2>Computer</h2>
         <FlexCol>
           <FlexRow style={{ height: "400px" }}>
             {computerTeamDataStore.assembledTeam?.map((warrior) => {
-              const power: number = warrior.skillTree.power;
-              const accuracy: number = warrior.skillTree.accuracy;
-              const conditioning: number = warrior.skillTree.conditioning;
-              const speed: number = warrior.skillTree.speed;
-              const health: number = warrior.skillTree.health;
-              const total: number =
-                power + accuracy + conditioning + speed + health;
-
-              return (
-                <FlexCol
-                  key={warrior.id}
-                  style={{
-                    border: "1px solid white",
-                    fontSize: "20pt",
-                    width: "300px",
-                  }}
-                >
-                  {warrior.name}
-                  <ul>
-                    <li>Power: {power}</li>
-                    <li>Accuracy: {accuracy}</li>
-                    <li>Conditioning: {conditioning}</li>
-                    <li>Speed: {speed}</li>
-                    <li>Health: {health}</li>
-                    <li>Total: {total}</li>
-                    <li>Diff: {total - 9}</li>
-                  </ul>
-                  
-                </FlexCol>
-              );
+              return <WarriorCard key={warrior.id} currentWarrior={warrior} />;
+            })}
+          </FlexRow>
+        </FlexCol>
+        <h2>User</h2>
+        <FlexCol>
+          <FlexRow style={{ height: "400px" }}>
+            {teamDataStore.assembledTeam?.map((warrior) => {
+              return <WarriorCard key={warrior.id} currentWarrior={warrior} />;
             })}
           </FlexRow>
         </FlexCol>
