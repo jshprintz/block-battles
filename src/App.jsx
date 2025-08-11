@@ -1,10 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import LandingPage from "./pages/LandingPage/LandingPage";
-import StartPage from "./pages/StartPage/StartPage";
-import RulesPage from "./pages/RulesPage/RulesPage";
-import NotFound from "./pages/NotFoundPage/NotFound";
-import BattleLobbyPage from "./pages/BattleLobbyPage/BattleLobbyPage";
 import AssignSkillsPage from "./pages/AssignSkillsPage/AssignSkillsPage";
+import BattleLobbyPage from "./pages/BattleLobbyPage/BattleLobbyPage";
+import ComputerBattlePage from "./pages/BattlePages/ComputerBattlePage/ComputerBattlePage";
+import LandingPage from "./pages/LandingPage/LandingPage";
+import NotFound from "./pages/NotFoundPage/NotFound";
+import RulesPage from "./pages/RulesPage/RulesPage";
+import StartPage from "./pages/StartPage/StartPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path="/start" element={<StartPage />} />
       <Route path="/assign-skills" element={<AssignSkillsPage />} />
       <Route path="/battle-lobby" element={<BattleLobbyPage />} />
+      <Route path="/battle/computer" element={<ComputerBattlePage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

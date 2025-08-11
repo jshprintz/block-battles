@@ -18,7 +18,7 @@ const BattleLobbyPage: React.FC = observer(() => {
           <CloseByButton $isDisabled={true} to="/battle-lobby">
             <p>Close By</p>
           </CloseByButton>
-          <ComputerButton $isDisabled={false} to="/rules">
+          <ComputerButton $isDisabled={false} to="/battle/computer">
             <p>Computer</p>
           </ComputerButton>
         </Menu>
