@@ -1,15 +1,19 @@
 import {
   MAX_NUM_OF_ASSIGNED_SKILLS,
-  NUM_OF_BONUS_SKILL_POINTS,
   NUM_OF_WARRIORS_ON_TEAM,
 } from "../Constants";
-import { IWarrior } from "../types/core";
+import { ISkillTree, IWarrior } from "../types/core";
 
-const randomSkillDistribution = (
-  warriorList: IWarrior[],
-  bonusCount: number
-): IWarrior[] => {
-  while (bonusCount > 0) {
+interface IStoreProps {
+  assembledTeam: IWarrior[];
+  bonusSkillPointCount: number;
+  [key: string]: any;
+}
+
+const randomSkillDistribution = (store: IStoreProps) => {
+  const warriorList: IWarrior[] = store.assembledTeam;
+
+  while (store.bonusSkillPointCount > 0) {
     const randomWarriorIndex = Math.floor(
       Math.random() * NUM_OF_WARRIORS_ON_TEAM
     );
@@ -20,8 +24,10 @@ const randomSkillDistribution = (
       skillKeys[Math.floor(Math.random() * skillKeys.length)];
 
     if (warrior.skillTree[randomSkillKey] < MAX_NUM_OF_ASSIGNED_SKILLS) {
-      warrior.skillTree[randomSkillKey]++;
-      bonusCount--;
+      store.increaseWarriorSkill(
+        warrior.id,
+        randomSkillKey as keyof ISkillTree
+      );
     }
   }
 
