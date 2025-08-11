@@ -3,20 +3,16 @@ import { FlexCol, FlexRow } from "../../../styles/core/styles";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { IWarrior } from "../../../types/core";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { warriors } from "../../../server/data/warriorData";
 import { NUM_OF_WARRIORS_ON_TEAM } from "../../../Constants";
 import { randomSkillDistribution } from "../../../helpers/randomSkillDistribution";
-import { computerTeamDataStore } from "../../../server/stores/TeamDataStore";
+import { computerTeamDataStore } from "../../../server/stores/ComputerTeamDataStore";
 
 const ComputerBattlePage: React.FC = observer(() => {
-  const [noSkillTeam, setNoSkillTeam] = useState<IWarrior[]>();
-
-  // Set the computer team
-  useEffect(() => {
+  const setupComputerTeam = useCallback(() => {
     const warriorsList: IWarrior[] = warriors;
     const warriorCount: number = warriorsList.length;
-    const computerWarriorList: IWarrior[] = [];
 
     for (let i = 0; i < NUM_OF_WARRIORS_ON_TEAM; i++) {
       const randomNum = Math.floor(Math.random() * warriorCount);
@@ -27,9 +23,16 @@ const ComputerBattlePage: React.FC = observer(() => {
       computerTeamDataStore.addWarrior(randomWarrior);
     }
 
-    setNoSkillTeam(computerWarriorList);
-    randomSkillDistribution(computerWarriorList);
+    
+    randomSkillDistribution(
+      computerTeamDataStore.assembledTeam,
+      computerTeamDataStore.bonusSkillPointCount
+    );
   }, []);
+
+  useEffect(() => {
+    setupComputerTeam();
+  }, [setupComputerTeam]);
 
   return (
     <Container>
@@ -38,40 +41,6 @@ const ComputerBattlePage: React.FC = observer(() => {
           <h1>COMPUTER BATTLE</h1>
         </HeaderContainer>
         <FlexCol>
-          <FlexRow style={{ height: "400px" }}>
-            {noSkillTeam?.map((warrior) => {
-              const power: number = warrior.skillTree.power;
-              const accuracy: number = warrior.skillTree.accuracy;
-              const conditioning: number = warrior.skillTree.conditioning;
-              const speed: number = warrior.skillTree.speed;
-              const health: number = warrior.skillTree.health;
-              const total: number =
-                power + accuracy + conditioning + speed + health;
-
-              return (
-                <FlexCol
-                  key={warrior.id}
-                  style={{
-                    border: "1px solid white",
-                    fontSize: "20pt",
-                    width: "300px",
-                  }}
-                >
-                  {warrior.name}
-                  <ul>
-                    <li>Power: {power}</li>
-                    <li>Accuracy: {accuracy}</li>
-                    <li>Conditioning: {conditioning}</li>
-                    <li>Speed: {speed}</li>
-                    <li>Health: {health}</li>
-                    <li>Total: {total}</li>
-                    <li>Diff: {total - 9}</li>
-                  </ul>
-                  <p style={{ textAlign: "center" }}>{warrior.id}</p>
-                </FlexCol>
-              );
-            })}
-          </FlexRow>
           <FlexRow style={{ height: "400px" }}>
             {computerTeamDataStore.assembledTeam?.map((warrior) => {
               const power: number = warrior.skillTree.power;

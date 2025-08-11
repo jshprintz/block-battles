@@ -8,7 +8,7 @@ import {
 import { action } from "mobx";
 import { warriors } from "../data/warriorData";
 
-export class TeamDataStore {
+export class ComputerTeamDataStore {
   protected warriorList: IWarrior[] = [];
 
   protected bonusSkillPoints: number = NUM_OF_BONUS_SKILL_POINTS;
@@ -26,6 +26,9 @@ export class TeamDataStore {
 
   // Adds warrior to user assembled list
   addWarrior(selectedWarrior: IWarrior) {
+    console.log("warrior list", this.warriorList, this.warriorList.length);
+    console.log("NUM_OF_WARRIORS_ON_TEAM", NUM_OF_WARRIORS_ON_TEAM);
+
     if (this.warriorList.length === NUM_OF_WARRIORS_ON_TEAM) {
       console.log("Cannot Add Warrior. Already at", NUM_OF_WARRIORS_ON_TEAM);
     } else {
@@ -105,4 +108,4 @@ export class TeamDataStore {
 }
 
 // Create a singleton instance
-export const teamDataStore = new TeamDataStore();
+export const computerTeamDataStore = new ComputerTeamDataStore();
