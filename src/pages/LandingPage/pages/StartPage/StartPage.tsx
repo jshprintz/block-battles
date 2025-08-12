@@ -2,14 +2,13 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { useEffect, useState } from "react";
-import { FlexRow } from "../../styles/core/styles";
-import { Container, HeaderContainer } from "../LandingPage/LandingPage";
-import { IWarrior } from "../../types/core";
-import { TeamPreview } from "./Components/TeamPreview";
-import { WarriorCard } from "./Components/WarriorCard";
-import { warriors as warriorList } from "../../server/data/warriorData";
+import { Container, FlexCol, FlexRow } from "../../../../styles/core/styles";
+import { IWarrior } from "../../../../types/core";
+import { StartPageTeamPreview } from "./Components/StartPageTeamPreview";
+import { StartPageWarriorCard } from "./Components/StartPageWarriorCard";
+import { warriors as warriorList } from "../../../../server/data/warriorData";
 import { observer } from "mobx-react-lite";
-import { NUM_OF_WARRIORS_ON_TEAM } from "../../Constants";
+import { NUM_OF_WARRIORS_ON_TEAM } from "../../../../Constants";
 
 const StartPage = observer(() => {
   const [warriorNumber, setWarriorNumber] = useState(
@@ -49,7 +48,7 @@ const StartPage = observer(() => {
           style={{ cursor: "pointer" }}
           onClick={onLeftClick}
         />
-        <WarriorCard currentWarrior={currentWarrior} />
+        <StartPageWarriorCard currentWarrior={currentWarrior} />
         <HiChevronRight
           size={150}
           style={{ cursor: "pointer" }}
@@ -57,7 +56,7 @@ const StartPage = observer(() => {
         />
       </SelectionBoxContainer>
 
-      <TeamPreview />
+      <StartPageTeamPreview />
       <HomeButton to="/">Home</HomeButton>
     </StartPageContainer>
   );
@@ -66,6 +65,12 @@ const StartPage = observer(() => {
 const StartPageContainer = styled(Container)`
   background-color: black;
   color: white;
+`;
+
+const HeaderContainer = styled(FlexCol)`
+  height: auto;
+  text-align: center;
+  font-size: 300%;
 `;
 
 const StartPageHeader = styled(HeaderContainer)`
@@ -92,3 +97,4 @@ const HomeButton = styled(Link)`
 `;
 
 export default StartPage;
+export { StartPage };

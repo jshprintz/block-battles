@@ -45,3 +45,4 @@ const StyledLink = styled(Link)`
   }
 `;
 export default NotFound;
+export { NotFound };

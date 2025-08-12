@@ -1,11 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-import AssignSkillsPage from "./pages/AssignSkillsPage/AssignSkillsPage";
-import BattleLobbyPage from "./pages/BattleLobbyPage/BattleLobbyPage";
-import ComputerBattlePage from "./pages/BattlePages/ComputerBattlePage/ComputerBattlePage";
-import LandingPage from "./pages/LandingPage/LandingPage";
-import NotFound from "./pages/NotFoundPage/NotFound";
-import RulesPage from "./pages/RulesPage/RulesPage";
-import StartPage from "./pages/StartPage/StartPage";
+import {
+  AssignSkillsPage,
+  BattleLobbyPage,
+  ComputerBattlePage,
+  LandingPage,
+  NotFound,
+  RulesPage,
+  StartPage,
+} from "./pages";
 
 function App() {
   return (

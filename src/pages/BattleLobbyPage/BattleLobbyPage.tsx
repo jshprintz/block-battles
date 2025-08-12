@@ -103,3 +103,4 @@ const ComputerButton = styled(MenuButton)`
 `;
 
 export default BattleLobbyPage;
+export { BattleLobbyPage };

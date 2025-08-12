@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { FlexRow, FlexCol, COLORS } from "../../../styles/core/styles";
-import { IWarrior } from "../../../types/core";
-import { teamDataStore } from "../../../server/stores/TeamDataStore";
 import { observer } from "mobx-react-lite";
-import { NUM_OF_WARRIORS_ON_TEAM } from "../../../Constants";
 import { Link } from "react-router-dom";
+import { NUM_OF_WARRIORS_ON_TEAM } from "../../../../../Constants";
+import { IWarrior } from "../../../../../types/core";
+import { teamDataStore } from "../../../../../server/stores/TeamDataStore";
+import { FlexRow, FlexCol, COLORS } from "../../../../../styles/core/styles";
 
-export const TeamPreview: React.FC = observer(() => {
+const StartPageTeamPreview: React.FC = observer(() => {
   const assembledTeam = teamDataStore.assembledTeam;
   const isTeamFull: boolean = assembledTeam.length === NUM_OF_WARRIORS_ON_TEAM;
 
@@ -130,3 +130,6 @@ const AssignSkills = styled(Link)`
     font-size: 150%;
   }
 `;
+
+export default StartPageTeamPreview;
+export { StartPageTeamPreview };

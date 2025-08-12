@@ -96,3 +96,4 @@ const BattleButton = styled(Link)`
 `;
 
 export default AssignSkillsPage;
+export { AssignSkillsPage };
