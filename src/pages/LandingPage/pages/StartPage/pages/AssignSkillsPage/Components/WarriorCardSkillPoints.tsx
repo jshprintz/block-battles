@@ -1,9 +1,16 @@
 import styled from "styled-components";
-import { COLORS, FlexCol, FlexRow } from "../../../styles/core/styles";
-import { ISkillTree, IWarrior } from "../../../types/core";
-import { teamDataStore, warriors } from "../../../server";
+import {
+  COLORS,
+  FlexCol,
+  FlexRow,
+} from "../../../../../../../styles/core/styles";
+import { ISkillTree, IWarrior } from "../../../../../../../types/core";
+import { teamDataStore, warriors } from "../../../../../../../server";
 import { observer } from "mobx-react-lite";
-import { MAX_NUM_OF_ASSIGNED_SKILLS, SKILL_TYPES } from "../../../Constants";
+import {
+  MAX_NUM_OF_ASSIGNED_SKILLS,
+  SKILL_TYPES,
+} from "../../../../../../../Constants";
 
 interface IWarriorCardSkillPointsProps {
   currentWarrior: IWarrior;

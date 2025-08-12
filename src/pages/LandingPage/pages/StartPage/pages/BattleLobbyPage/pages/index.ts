@@ -1,1 +1,1 @@
-export * from "./ComputerBattlePage/ComputerBattlePage";
+export * from "./ComputerBattlePage";

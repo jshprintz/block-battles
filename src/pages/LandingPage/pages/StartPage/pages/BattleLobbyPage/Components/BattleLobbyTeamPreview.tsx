@@ -1,14 +1,11 @@
 import styled from "styled-components";
-import { FlexRow, FlexCol, COLORS } from "../../../styles/core/styles";
-import { IWarrior } from "../../../types/core";
-import { teamDataStore } from "../../../server/stores/TeamDataStore";
 import { observer } from "mobx-react-lite";
-import { NUM_OF_WARRIORS_ON_TEAM } from "../../../Constants";
-import { Link } from "react-router-dom";
+import { teamDataStore } from "../../../../../../../server";
+import { FlexRow, FlexCol } from "../../../../../../../styles/core/styles";
+import { IWarrior } from "../../../../../../../types/core";
 
 export const BattleLobbyTeamPreview: React.FC = observer(() => {
   const assembledTeam = teamDataStore.assembledTeam;
-
 
   return (
     <TeamBox>
@@ -70,6 +67,3 @@ const TeamCardContainer = styled(FlexRow)`
   width: 100%;
   justify-content: space-evenly;
 `;
-
-
-

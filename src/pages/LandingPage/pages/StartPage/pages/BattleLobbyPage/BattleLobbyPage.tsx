@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
-import { COLORS, FlexCol } from "../../styles/core/styles";
+import { COLORS, FlexCol } from "../../../../../../styles/core/styles";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import { BattleLobbyTeamPreview } from "./Components/BattleLobbyTeamPreview";
+import { BattleLobbyTeamPreview } from "./Components";
 
 const BattleLobbyPage: React.FC = observer(() => {
   return (
@@ -22,7 +22,7 @@ const BattleLobbyPage: React.FC = observer(() => {
             <p>Computer</p>
           </ComputerButton>
         </Menu>
-        <BattleLobbyTeamPreview></BattleLobbyTeamPreview>
+        <BattleLobbyTeamPreview />
       </BattleLobbyPageContainer>
       <Link to="/">Return Home</Link>
     </Container>
