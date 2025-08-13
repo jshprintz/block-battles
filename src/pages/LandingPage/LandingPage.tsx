@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLORS, FlexCol } from "../../styles/core/styles";
+import { COLORS, Container, FlexCol } from "@/styles/core/styles";
 import { Link } from "react-router-dom";
 
 function LandingPage() {
@@ -22,30 +22,19 @@ function LandingPage() {
   );
 }
 
-export const Container = styled(FlexCol)`
-  height: 99dvh;
-  font-size: 100%;
-  overflow: auto;
-  justify-content: space-around;
-
-  font-family: "Barriecito", system-ui;
-  font-weight: 400;
-  font-style: normal;
-`;
-
 const LandingPageContainer = styled(FlexCol)`
   justify-content: space-around;
   color: white;
   background-color: black;
 `;
 
-export const HeaderContainer = styled(FlexCol)`
+const HeaderContainer = styled(FlexCol)`
   height: auto;
   text-align: center;
   font-size: 300%;
 `;
 
-export const Menu = styled(FlexCol)`
+const Menu = styled(FlexCol)`
   height: 50%;
   width: 75%;
   justify-content: space-evenly;
@@ -84,3 +73,4 @@ const RegularMenuButton = styled(MenuButton)`
 `;
 
 export default LandingPage;
+export { LandingPage };

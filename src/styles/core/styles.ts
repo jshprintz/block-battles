@@ -24,6 +24,17 @@ export const FlexRow = styled(Default)`
   flex-direction: row;
 `;
 
+export const Container = styled(FlexCol)`
+  height: 99dvh;
+  font-size: 100%;
+  overflow: auto;
+  justify-content: space-around;
+
+  font-family: "Barriecito", system-ui;
+  font-weight: 400;
+  font-style: normal;
+`;
+
 export const COLORS = {
   START_BTN:
     "linear-gradient(to bottom, #1b5b41, #097347, #008b4a, #00a34952, #010101, #000000, #000000, #010101, #00a34952, #008b4a, #097347, #1b5b41)",

@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { SKILL_TYPES } from "../../../Constants";
-import { teamDataStore } from "../../../server/stores/TeamDataStore";
-import { FlexRow, COLORS } from "../../../styles/core/styles";
-import { ISkillTree, IWarrior } from "../../../types/core";
+import { SKILL_TYPES } from "@/Constants";
+import { teamDataStore } from "@/server/stores/TeamDataStore";
+import { FlexRow, COLORS } from "@/styles/core/styles";
+import { ISkillTree, IWarrior } from "@/types/core";
 import { observer } from "mobx-react-lite";
 
 interface IWarriorCardSkillPointProps {

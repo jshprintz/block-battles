@@ -1,15 +1,13 @@
 import styled from "styled-components";
-import { Menu } from "../../LandingPage/LandingPage";
-import { COLORS, FlexRow } from "../../../styles/core/styles";
-import { ISkillTree, IWarrior } from "../../../types/core";
-import { teamDataStore } from "../../../server/stores/TeamDataStore";
 import { observer } from "mobx-react-lite";
+import { FlexRow, COLORS, FlexCol } from "@/styles/core/styles";
+import { IWarrior } from "@/types/core";
 
 interface IWarriorCodeProps {
   currentWarrior: IWarrior;
 }
 
-export const WarriorCard: React.FC<IWarriorCodeProps> = observer(
+const ComputerBattleWarriorCard: React.FC<IWarriorCodeProps> = observer(
   ({ currentWarrior }) => {
     const warriorName: string = currentWarrior.name;
     const classType: string = currentWarrior.class;
@@ -22,13 +20,6 @@ export const WarriorCard: React.FC<IWarriorCodeProps> = observer(
     const health = skillTree.health;
     // Traits are Vuln and Dom
     // const traits = currentWarrior.traits;
-
-    // When I add to the list, I have to have a way to add the store with it.
-    const handleAddClick = () => {
-      const current = currentWarrior;
-      current.id = crypto.randomUUID();
-      teamDataStore.addWarrior(current);
-    };
 
     return (
       <SelectionBox>
@@ -44,13 +35,17 @@ export const WarriorCard: React.FC<IWarriorCodeProps> = observer(
           <CardStats>Speed: {speed}</CardStats>
           <CardStats>Health: {health}</CardStats>
         </CardStatsContainer>
-        <AddButtonContainer>
-          <AddButton onClick={handleAddClick}>+</AddButton>
-        </AddButtonContainer>
       </SelectionBox>
     );
   }
 );
+
+const Menu = styled(FlexCol)`
+  height: 50%;
+  width: 75%;
+  justify-content: space-evenly;
+  border-radius: 5px;
+`;
 
 const SelectionBox = styled(Menu)`
   justify-content: space-between;
@@ -87,22 +82,5 @@ const CardStats = styled.li`
   margin-bottom: 5px;
 `;
 
-const AddButtonContainer = styled(FlexRow)`
-  width: 100%;
-  height: 40px;
-  justify-content: flex-end;
-  padding-right: 5px;
-  padding-bottom: 5px;
-`;
-
-const AddButton = styled(FlexRow)`
-  height: 40px;
-  width: 40px;
-  background-image: ${COLORS.START_BTN};
-  border-radius: 50%;
-  cursor: pointer;
-
-  &:hover {
-    font-size: 150%;
-  }
-`;
+export default ComputerBattleWarriorCard;
+export { ComputerBattleWarriorCard };

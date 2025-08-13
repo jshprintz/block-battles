@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
-import { COLORS, FlexCol, FlexRow } from "../../styles/core/styles";
-import { IWarrior } from "../../types/core";
-import { teamDataStore } from "../../server/stores/TeamDataStore";
+import { COLORS, FlexCol, FlexRow } from "@/styles/core/styles";
+import { IWarrior } from "@/types/core";
+import { teamDataStore } from "@/server/stores/TeamDataStore";
 import { WarriorCardSkillPoints } from "./Components/WarriorCardSkillPoints";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
@@ -96,3 +96,4 @@ const BattleButton = styled(Link)`
 `;
 
 export default AssignSkillsPage;
+export { AssignSkillsPage };

@@ -1,17 +1,13 @@
-import styled, { css } from "styled-components";
-import { FlexCol, FlexRow } from "../../../styles/core/styles";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import { IWarrior } from "../../../types/core";
-import { useCallback, useEffect, useState } from "react";
-import { warriors } from "../../../server/data/warriorData";
-import { NUM_OF_WARRIORS_ON_TEAM } from "../../../Constants";
-import { randomSkillDistribution } from "../../../helpers/randomSkillDistribution";
-import {
-  computerTeamDataStore,
-  teamDataStore,
-} from "../../../server/stores/TeamDataStore";
-import { WarriorCard } from "./Components/WarriorCard";
+import { useCallback, useEffect } from "react";
+import { ComputerBattleWarriorCard } from "./Components";
+import { NUM_OF_WARRIORS_ON_TEAM } from "@/Constants";
+import { computerTeamDataStore, teamDataStore, warriors } from "@/server";
+import { FlexCol, FlexRow } from "@/styles/core/styles";
+import { IWarrior } from "@/types/core";
+import { randomSkillDistribution } from "@/helpers";
 
 const ComputerBattlePage: React.FC = observer(() => {
   const setupComputerTeam = useCallback(() => {
@@ -44,7 +40,12 @@ const ComputerBattlePage: React.FC = observer(() => {
         <FlexCol>
           <FlexRow style={{ height: "400px" }}>
             {computerTeamDataStore.assembledTeam?.map((warrior) => {
-              return <WarriorCard key={warrior.id} currentWarrior={warrior} />;
+              return (
+                <ComputerBattleWarriorCard
+                  key={warrior.id}
+                  currentWarrior={warrior}
+                />
+              );
             })}
           </FlexRow>
         </FlexCol>
@@ -52,7 +53,12 @@ const ComputerBattlePage: React.FC = observer(() => {
         <FlexCol>
           <FlexRow style={{ height: "400px" }}>
             {teamDataStore.assembledTeam?.map((warrior) => {
-              return <WarriorCard key={warrior.id} currentWarrior={warrior} />;
+              return (
+                <ComputerBattleWarriorCard
+                  key={warrior.id}
+                  currentWarrior={warrior}
+                />
+              );
             })}
           </FlexRow>
         </FlexCol>
@@ -86,3 +92,4 @@ const HeaderContainer = styled(FlexCol)`
 `;
 
 export default ComputerBattlePage;
+export { ComputerBattlePage };

@@ -1,15 +1,14 @@
 import styled from "styled-components";
-
 import { observer } from "mobx-react-lite";
-import { FlexRow, COLORS } from "../../../../styles/core/styles";
-import { IWarrior } from "../../../../types/core";
-import { Menu } from "../../../LandingPage/LandingPage";
+import { teamDataStore } from "@/server";
+import { FlexRow, COLORS, FlexCol } from "@/styles/core/styles";
+import { IWarrior } from "@/types/core";
 
-interface IWarriorCodeProps {
+interface IStartPageWarriorCardProps {
   currentWarrior: IWarrior;
 }
 
-export const WarriorCard: React.FC<IWarriorCodeProps> = observer(
+const StartPageWarriorCard: React.FC<IStartPageWarriorCardProps> = observer(
   ({ currentWarrior }) => {
     const warriorName: string = currentWarrior.name;
     const classType: string = currentWarrior.class;
@@ -22,6 +21,13 @@ export const WarriorCard: React.FC<IWarriorCodeProps> = observer(
     const health = skillTree.health;
     // Traits are Vuln and Dom
     // const traits = currentWarrior.traits;
+
+    // When I add to the list, I have to have a way to add the store with it.
+    const handleAddClick = () => {
+      const current = currentWarrior;
+      current.id = crypto.randomUUID();
+      teamDataStore.addWarrior(current);
+    };
 
     return (
       <SelectionBox>
@@ -37,11 +43,20 @@ export const WarriorCard: React.FC<IWarriorCodeProps> = observer(
           <CardStats>Speed: {speed}</CardStats>
           <CardStats>Health: {health}</CardStats>
         </CardStatsContainer>
+        <AddButtonContainer>
+          <AddButton onClick={handleAddClick}>+</AddButton>
+        </AddButtonContainer>
       </SelectionBox>
     );
   }
 );
 
+const Menu = styled(FlexCol)`
+  height: 50%;
+  width: 75%;
+  justify-content: space-evenly;
+  border-radius: 5px;
+`;
 const SelectionBox = styled(Menu)`
   justify-content: space-between;
   border: 2px solid white;
@@ -96,3 +111,6 @@ const AddButton = styled(FlexRow)`
     font-size: 150%;
   }
 `;
+
+export default StartPageWarriorCard;
+export { StartPageWarriorCard };

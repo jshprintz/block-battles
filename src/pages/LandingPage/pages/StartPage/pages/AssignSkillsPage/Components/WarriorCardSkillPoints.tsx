@@ -1,18 +1,16 @@
 import styled from "styled-components";
-import { Menu } from "../../LandingPage/LandingPage";
-import { COLORS, FlexRow } from "../../../styles/core/styles";
-import { ISkillTree, IWarrior } from "../../../types/core";
-import { teamDataStore } from "../../../server/stores/TeamDataStore";
+import { COLORS, FlexCol, FlexRow } from "@/styles/core/styles";
+import { ISkillTree, IWarrior } from "@/types/core";
+import { teamDataStore, warriors } from "@/server";
 import { observer } from "mobx-react-lite";
-import { warriors } from "../../../server/data/warriorData";
-import { MAX_NUM_OF_ASSIGNED_SKILLS, SKILL_TYPES } from "../../../Constants";
+import { MAX_NUM_OF_ASSIGNED_SKILLS, SKILL_TYPES } from "@/Constants";
 
 interface IWarriorCardSkillPointsProps {
   currentWarrior: IWarrior;
 }
 
-export const WarriorCardSkillPoints: React.FC<IWarriorCardSkillPointsProps> =
-  observer(({ currentWarrior }) => {
+const WarriorCardSkillPoints: React.FC<IWarriorCardSkillPointsProps> = observer(
+  ({ currentWarrior }) => {
     const warrior = teamDataStore.assembledTeam.find((warrior) => {
       return warrior.id === currentWarrior.id;
     });
@@ -221,7 +219,15 @@ export const WarriorCardSkillPoints: React.FC<IWarriorCardSkillPointsProps> =
         </CardStatsContainer>
       </SelectionBox>
     );
-  });
+  }
+);
+
+const Menu = styled(FlexCol)`
+  height: 50%;
+  width: 75%;
+  justify-content: space-evenly;
+  border-radius: 5px;
+`;
 
 const SelectionBox = styled(Menu)`
   justify-content: space-between;
@@ -282,3 +288,6 @@ const RemoveButton = styled(FlexRow)<{ $isActive: boolean }>`
   cursor: ${(p) => (p.$isActive ? "pointer" : "not-allowed")};
   opacity: ${(p) => (p.$isActive ? 1 : 0.3)};
 `;
+
+export default WarriorCardSkillPoints;
+export { WarriorCardSkillPoints };
