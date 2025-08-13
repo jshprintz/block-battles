@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { observer } from "mobx-react-lite";
-import { teamDataStore } from "../../../../../../../server";
-import { FlexRow, FlexCol } from "../../../../../../../styles/core/styles";
-import { IWarrior } from "../../../../../../../types/core";
+import { teamDataStore } from "@/server";
+import { FlexRow, FlexCol } from "@/styles/core/styles";
+import { IWarrior } from "@/types/core";
 
 export const BattleLobbyTeamPreview: React.FC = observer(() => {
   const assembledTeam = teamDataStore.assembledTeam;

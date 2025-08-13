@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
-import { NUM_OF_WARRIORS_ON_TEAM } from "../../../../../Constants";
-import { IWarrior } from "../../../../../types/core";
-import { teamDataStore } from "../../../../../server/stores/TeamDataStore";
-import { FlexRow, FlexCol, COLORS } from "../../../../../styles/core/styles";
+import { NUM_OF_WARRIORS_ON_TEAM } from "@/Constants";
+import { IWarrior } from "@/types/core";
+import { teamDataStore } from "@/server";
+import { FlexRow, FlexCol, COLORS } from "@/styles/core/styles";
 
 const StartPageTeamPreview: React.FC = observer(() => {
   const assembledTeam = teamDataStore.assembledTeam;

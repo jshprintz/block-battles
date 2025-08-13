@@ -3,15 +3,11 @@ import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { useCallback, useEffect } from "react";
 import { ComputerBattleWarriorCard } from "./Components";
-import { NUM_OF_WARRIORS_ON_TEAM } from "../../../../../../../../Constants";
-import {
-  computerTeamDataStore,
-  teamDataStore,
-  warriors,
-} from "../../../../../../../../server";
-import { FlexCol, FlexRow } from "../../../../../../../../styles/core/styles";
-import { IWarrior } from "../../../../../../../../types/core";
-import { randomSkillDistribution } from "../../../../../../../../helpers";
+import { NUM_OF_WARRIORS_ON_TEAM } from "@/Constants";
+import { computerTeamDataStore, teamDataStore, warriors } from "@/server";
+import { FlexCol, FlexRow } from "@/styles/core/styles";
+import { IWarrior } from "@/types/core";
+import { randomSkillDistribution } from "@/helpers";
 
 const ComputerBattlePage: React.FC = observer(() => {
   const setupComputerTeam = useCallback(() => {

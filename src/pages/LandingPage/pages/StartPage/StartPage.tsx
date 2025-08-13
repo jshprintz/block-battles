@@ -2,13 +2,12 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { useEffect, useState } from "react";
-import { Container, FlexCol, FlexRow } from "../../../../styles/core/styles";
-import { IWarrior } from "../../../../types/core";
-import { StartPageTeamPreview } from "./Components/StartPageTeamPreview";
-import { StartPageWarriorCard } from "./Components/StartPageWarriorCard";
-import { warriors as warriorList } from "../../../../server/data/warriorData";
+import { Container, FlexCol, FlexRow } from "@/styles/core/styles";
+import { IWarrior } from "@/types/core";
+import { warriors as warriorList } from "@/server/data/warriorData";
 import { observer } from "mobx-react-lite";
-import { NUM_OF_WARRIORS_ON_TEAM } from "../../../../Constants";
+import { NUM_OF_WARRIORS_ON_TEAM } from "@/Constants";
+import { StartPageWarriorCard, StartPageTeamPreview } from "./Components";
 
 const StartPage = observer(() => {
   const [warriorNumber, setWarriorNumber] = useState(

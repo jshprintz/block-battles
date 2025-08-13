@@ -1,11 +1,7 @@
 import styled from "styled-components";
 import { observer } from "mobx-react-lite";
-import {
-  FlexRow,
-  COLORS,
-  FlexCol,
-} from "../../../../../../../../../styles/core/styles";
-import { IWarrior } from "../../../../../../../../../types/core";
+import { FlexRow, COLORS, FlexCol } from "@/styles/core/styles";
+import { IWarrior } from "@/types/core";
 
 interface IWarriorCodeProps {
   currentWarrior: IWarrior;

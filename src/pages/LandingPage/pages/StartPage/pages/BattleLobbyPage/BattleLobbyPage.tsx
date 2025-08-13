@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { COLORS, FlexCol } from "../../../../../../styles/core/styles";
+import { COLORS, FlexCol } from "@/styles/core/styles";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { BattleLobbyTeamPreview } from "./Components";

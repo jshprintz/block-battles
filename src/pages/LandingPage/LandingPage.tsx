@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLORS, Container, FlexCol } from "../../styles/core/styles";
+import { COLORS, Container, FlexCol } from "@/styles/core/styles";
 import { Link } from "react-router-dom";
 
 function LandingPage() {
