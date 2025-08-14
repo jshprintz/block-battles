@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { observer } from "mobx-react-lite";
-import { teamDataStore } from "@/server";
+import { teamDataStore, warriors } from "@/server";
 import { FlexRow, COLORS, FlexCol } from "@/styles/core/styles";
-import { IWarrior } from "@/types/core";
+import { ISkillTree, IWarrior } from "@/types/core";
 
 interface IStartPageWarriorCardProps {
   currentWarrior: IWarrior;
@@ -13,16 +13,26 @@ const StartPageWarriorCard: React.FC<IStartPageWarriorCardProps> = observer(
     const warriorName: string = currentWarrior.name;
     const classType: string = currentWarrior.class;
     const imgPath: string = currentWarrior.imgPath;
-    const skillTree = currentWarrior.skillTree;
-    const power = skillTree.power;
-    const accuracy = skillTree.accuracy;
-    const conditioning = skillTree.conditioning;
-    const speed = skillTree.speed;
-    const health = skillTree.health;
+    const iconPath: string = currentWarrior.iconPath;
+    const skillTree: ISkillTree = currentWarrior.skillTree;
+    const power: number = skillTree.power;
+    const accuracy: number = skillTree.accuracy;
+    const conditioning: number = skillTree.conditioning;
+    const speed: number = skillTree.speed;
+    const health: number = skillTree.health;
     // Traits are Vuln and Dom
-    // const traits = currentWarrior.traits;
+    const traits = currentWarrior.traits;
+    const vuln: string = traits.vulnerable;
+    const vulnWarrior: IWarrior | undefined = warriors.find((warrior) => {
+      return warrior.class === vuln;
+    });
+    const vulnIconPath: string = vulnWarrior ? vulnWarrior.iconPath : "";
+    const dom: string = traits.dominate;
+    const domWarrior: IWarrior | undefined = warriors.find((warrior) => {
+      return warrior.class === dom;
+    });
+    const domIconPath: string = domWarrior ? domWarrior.iconPath : "";
 
-    // When I add to the list, I have to have a way to add the store with it.
     const handleAddClick = () => {
       const current = currentWarrior;
       current.id = crypto.randomUUID();
@@ -30,38 +40,47 @@ const StartPageWarriorCard: React.FC<IStartPageWarriorCardProps> = observer(
     };
 
     return (
-      <SelectionBox>
+      <CardContainer>
         <CardHeader>
           <span>{warriorName}</span>
-          <span>{classType}</span>
+          <span>
+            {classType}
+            <CardIcon src={iconPath} alt={classType} />
+          </span>
         </CardHeader>
         <CardImage src={imgPath} alt={`${warriorName}-${classType}`} />
-        <CardStatsContainer>
-          <CardStats>Power: {power}</CardStats>
-          <CardStats>Accuracy: {accuracy}</CardStats>
-          <CardStats>Conditioning: {conditioning}</CardStats>
-          <CardStats>Speed: {speed}</CardStats>
-          <CardStats>Health: {health}</CardStats>
-        </CardStatsContainer>
+        <CardBody>
+          <CardStatsContainer>
+            <CardStats>Power: {power}</CardStats>
+            <CardStats>Accuracy: {accuracy}</CardStats>
+            <CardStats>Conditioning: {conditioning}</CardStats>
+            <CardStats>Speed: {speed}</CardStats>
+            <CardStats>Health: {health}</CardStats>
+          </CardStatsContainer>
+          <CardTraitsContainer>
+            <DomTrait>
+              <CardIcon src={domIconPath} alt={dom} />
+            </DomTrait>
+            <VulnTrait>
+              <CardIcon src={vulnIconPath} alt={vuln} />
+            </VulnTrait>
+          </CardTraitsContainer>
+        </CardBody>
         <AddButtonContainer>
-          <AddButton onClick={handleAddClick}>+</AddButton>
+          <AddButton onClick={handleAddClick}>ADD</AddButton>
         </AddButtonContainer>
-      </SelectionBox>
+      </CardContainer>
     );
   }
 );
 
-const Menu = styled(FlexCol)`
-  height: 50%;
-  width: 75%;
-  justify-content: space-evenly;
-  border-radius: 5px;
-`;
-const SelectionBox = styled(Menu)`
+const CardContainer = styled(FlexCol)`
   justify-content: space-between;
   border: 2px solid white;
-  width: 400px;
+  border-radius: 5px;
+  width: 250px;
   height: auto;
+  user-select: none;
 `;
 
 const CardHeader = styled(FlexRow)`
@@ -73,6 +92,11 @@ const CardHeader = styled(FlexRow)`
   user-select: none;
 `;
 
+const CardIcon = styled.img`
+  height: 20px;
+  margin-left: 2px;
+`;
+
 const CardImage = styled.img`
   height: 200px;
   width: 200px;
@@ -80,12 +104,26 @@ const CardImage = styled.img`
   border-radius: 5px;
 `;
 
-const CardStatsContainer = styled.ul`
+const CardBody = styled(FlexRow)`
   height: auto;
   width: 100%;
+  justify-content: space-between;
+`;
+
+const CardStatsContainer = styled.ul`
+  height: auto;
+  width: 50%;
   font-size: 110%;
   list-style: none;
   user-select: none;
+  padding: 5px;
+  margin-left: 5px;
+`;
+
+const CardTraitsContainer = styled(FlexCol)`
+  height: 100px;
+  width: 50%;
+  justify-content: space-around;
 `;
 
 const CardStats = styled.li`
@@ -103,13 +141,28 @@ const AddButtonContainer = styled(FlexRow)`
 const AddButton = styled(FlexRow)`
   height: 40px;
   width: 40px;
-  background-image: ${COLORS.START_BTN};
+  background-image: ${COLORS.GREEN_BTN};
   border-radius: 50%;
   cursor: pointer;
 
   &:hover {
     font-size: 150%;
   }
+`;
+
+const TraitClass = styled(FlexRow)`
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  user-select: none;
+`;
+
+const DomTrait = styled(TraitClass)`
+  background-image: ${COLORS.RED_BTN};
+`;
+
+const VulnTrait = styled(TraitClass)`
+  background-image: ${COLORS.BLUE_BTN};
 `;
 
 export default StartPageWarriorCard;

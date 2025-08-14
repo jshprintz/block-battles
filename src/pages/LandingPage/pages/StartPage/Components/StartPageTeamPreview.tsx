@@ -88,7 +88,7 @@ const TeamCardBtnRow = styled(FlexRow)`
 const RemoveButton = styled(FlexRow)`
   height: 20px;
   width: 20px;
-  background-image: ${COLORS.REMOVE_BTN};
+  background-image: ${COLORS.RED_BTN};
   border-radius: 50%;
   cursor: pointer;
 
@@ -122,7 +122,7 @@ const AssignSkills = styled(Link)`
   color: white;
   text-decoration: none;
 
-  background-image: ${COLORS.REG_BTN};
+  background-image: ${COLORS.YELLOW_BTN};
   border-radius: 5px;
   cursor: pointer;
 

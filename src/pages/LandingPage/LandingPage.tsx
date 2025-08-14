@@ -64,12 +64,12 @@ const MenuButton = styled(Link)`
 `;
 
 const StartButton = styled(MenuButton)`
-  background-image: ${COLORS.START_BTN};
+  background-image: ${COLORS.GREEN_BTN};
   font-size: 350%;
 `;
 
 const RegularMenuButton = styled(MenuButton)`
-  background-image: ${COLORS.REG_BTN};
+  background-image: ${COLORS.YELLOW_BTN};
 `;
 
 export default LandingPage;

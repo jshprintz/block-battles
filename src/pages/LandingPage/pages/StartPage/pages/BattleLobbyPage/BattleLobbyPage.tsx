@@ -91,15 +91,15 @@ const MenuButton = styled(Link)<{ $isDisabled: boolean }>`
 `;
 
 const OnlineButton = styled(MenuButton)`
-  background-image: ${COLORS.START_BTN};
+  background-image: ${COLORS.GREEN_BTN};
 `;
 
 const CloseByButton = styled(MenuButton)`
-  background-image: ${COLORS.REG_BTN};
+  background-image: ${COLORS.YELLOW_BTN};
 `;
 
 const ComputerButton = styled(MenuButton)`
-  background-image: ${COLORS.REG_BTN};
+  background-image: ${COLORS.YELLOW_BTN};
 `;
 
 export default BattleLobbyPage;

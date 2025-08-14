@@ -37,7 +37,9 @@ const BattlePreviewPage: React.FC<IBattlePreviewPageProps> = observer(
             </HeaderContainer>
             <h2>Opponent</h2>
             <FlexCol>
-              <FlexRow style={{ height: "400px" }}>
+              <FlexRow
+                style={{ height: "400px", justifyContent: "space-evenly" }}
+              >
                 {opponentStore.assembledTeam?.map((warrior) => {
                   return (
                     <BattlePreviewWarriorCard
@@ -50,7 +52,9 @@ const BattlePreviewPage: React.FC<IBattlePreviewPageProps> = observer(
             </FlexCol>
             <h2>User</h2>
             <FlexCol>
-              <FlexRow style={{ height: "400px" }}>
+              <FlexRow
+                style={{ height: "400px", justifyContent: "space-evenly" }}
+              >
                 {teamDataStore.assembledTeam?.map((warrior) => {
                   return (
                     <BattlePreviewWarriorCard

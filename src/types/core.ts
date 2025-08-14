@@ -3,6 +3,7 @@ interface IWarrior {
   id: string;
   class: string;
   imgPath: string;
+  iconPath: string;
   description: string;
   skillTree: ISkillTree;
   traits: {
