@@ -273,7 +273,7 @@ const ButtonRow = styled(FlexRow)`
 const AddButton = styled(FlexRow)<{ $isActive: boolean }>`
   width: 20px;
   margin: 5px;
-  background-image: ${COLORS.START_BTN};
+  background-image: ${COLORS.GREEN_BTN};
   border-radius: 50%;
   cursor: ${(p) => (p.$isActive ? "pointer" : "not-allowed")};
   opacity: ${(p) => (p.$isActive ? 1 : 0.3)};
@@ -282,7 +282,7 @@ const AddButton = styled(FlexRow)<{ $isActive: boolean }>`
 const RemoveButton = styled(FlexRow)<{ $isActive: boolean }>`
   width: 20px;
   margin: 5px;
-  background-image: ${COLORS.REMOVE_BTN};
+  background-image: ${COLORS.RED_BTN};
   border-radius: 50%;
   cursor: pointer;
   cursor: ${(p) => (p.$isActive ? "pointer" : "not-allowed")};

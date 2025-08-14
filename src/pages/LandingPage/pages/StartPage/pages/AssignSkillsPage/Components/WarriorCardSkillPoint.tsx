@@ -57,7 +57,7 @@ const ButtonRow = styled(FlexRow)`
 const AddButton = styled(FlexRow)`
   width: 20px;
   margin: 5px;
-  background-image: ${COLORS.START_BTN};
+  background-image: ${COLORS.GREEN_BTN};
   border-radius: 50%;
   cursor: pointer;
 `;
@@ -65,7 +65,7 @@ const AddButton = styled(FlexRow)`
 const RemoveButton = styled(FlexRow)`
   width: 20px;
   margin: 5px;
-  background-image: ${COLORS.REMOVE_BTN};
+  background-image: ${COLORS.RED_BTN};
   border-radius: 50%;
   cursor: pointer;
 `;

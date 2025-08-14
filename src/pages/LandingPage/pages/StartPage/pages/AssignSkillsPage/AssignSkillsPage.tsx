@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { COLORS, FlexCol, FlexRow } from "@/styles/core/styles";
 import { IWarrior } from "@/types/core";
 import { teamDataStore } from "@/server/stores/TeamDataStore";
@@ -88,7 +88,7 @@ const BattleButton = styled(Link)`
   cursor: pointer;
   font-size: 200%;
 
-  background: ${COLORS.START_BTN};
+  background: ${COLORS.GREEN_BTN};
 
   &:hover {
     transform: scale(1.02);

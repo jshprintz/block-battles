@@ -65,7 +65,7 @@ export class TeamDataStore {
   }
 
   // Sets the number of bonus skill points that are available
-  public set bonusSkillPointCount(bonusSkillPoints: number) {
+  private set bonusSkillPointCount(bonusSkillPoints: number) {
     this.bonusSkillPoints = bonusSkillPoints;
   }
 

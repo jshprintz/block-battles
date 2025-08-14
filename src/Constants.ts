@@ -4,6 +4,8 @@ export const NUM_OF_BONUS_SKILL_POINTS = 10;
 
 export const MAX_NUM_OF_ASSIGNED_SKILLS = 5;
 
+export const BATTLE_PREVIEW_COUNTDOWN = 10;
+
 export const CLASS_TYPES = {
   BRUTE: "Brute",
   WIZARD: "Wizard",

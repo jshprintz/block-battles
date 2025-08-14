@@ -16,6 +16,10 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
 
+    /* Unused Code Flags */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
     /* Absolute Imports / Aliases */
     "baseUrl": "src",
     "paths": {
