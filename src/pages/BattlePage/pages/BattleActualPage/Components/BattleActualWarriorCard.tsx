@@ -7,7 +7,7 @@ interface IWarriorCodeProps {
   currentWarrior: IWarrior;
 }
 
-const ComputerBattleWarriorCard: React.FC<IWarriorCodeProps> = observer(
+const BattleActualWarriorCard: React.FC<IWarriorCodeProps> = observer(
   ({ currentWarrior }) => {
     const warriorName: string = currentWarrior.name;
     const classType: string = currentWarrior.class;
@@ -22,7 +22,7 @@ const ComputerBattleWarriorCard: React.FC<IWarriorCodeProps> = observer(
     // const traits = currentWarrior.traits;
 
     return (
-      <SelectionBox>
+      <CardContainer>
         <CardHeader>
           <span>{warriorName}</span>
           <span>{classType}</span>
@@ -35,7 +35,7 @@ const ComputerBattleWarriorCard: React.FC<IWarriorCodeProps> = observer(
           <CardStats>Speed: {speed}</CardStats>
           <CardStats>Health: {health}</CardStats>
         </CardStatsContainer>
-      </SelectionBox>
+      </CardContainer>
     );
   }
 );
@@ -47,10 +47,10 @@ const Menu = styled(FlexCol)`
   border-radius: 5px;
 `;
 
-const SelectionBox = styled(Menu)`
+const CardContainer = styled(Menu)`
   justify-content: space-between;
   border: 2px solid white;
-  width: 400px;
+  width: 250px;
   height: auto;
 `;
 
@@ -82,5 +82,5 @@ const CardStats = styled.li`
   margin-bottom: 5px;
 `;
 
-export default ComputerBattleWarriorCard;
-export { ComputerBattleWarriorCard };
+export default BattleActualWarriorCard;
+export { BattleActualWarriorCard };

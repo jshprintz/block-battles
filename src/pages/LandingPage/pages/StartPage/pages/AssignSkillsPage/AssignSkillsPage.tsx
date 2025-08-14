@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { COLORS, FlexCol, FlexRow } from "@/styles/core/styles";
 import { IWarrior } from "@/types/core";
 import { teamDataStore } from "@/server/stores/TeamDataStore";

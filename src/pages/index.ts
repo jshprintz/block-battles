@@ -1,5 +1,4 @@
-export * from "./LandingPage/pages/StartPage/pages/AssignSkillsPage";
-export * from "./LandingPage/pages/StartPage/pages/BattleLobbyPage";
+export * from "./BattlePage";
 export * from "./LandingPage";
+export * from "./LoadingPage";
 export * from "./NotFoundPage";
-export * from "./LandingPage/pages/RulesPage";
