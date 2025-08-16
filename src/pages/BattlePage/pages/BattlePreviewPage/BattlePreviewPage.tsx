@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { observer } from "mobx-react-lite";
-import { BattlePreviewWarriorCard } from "../BattlePreviewPage/Components";
 import { TeamDataStore, teamDataStore } from "@/server";
 import { FlexCol, FlexRow } from "@/styles/core/styles";
 import { useEffect, useState } from "react";
 import { BATTLE_PREVIEW_COUNTDOWN } from "@/Constants";
 import { BattleActualPage } from "../BattleActualPage";
+import { WarriorCard } from "@/shared";
 
 interface IBattlePreviewPageProps {
   opponentStore: TeamDataStore;
@@ -42,10 +42,7 @@ const BattlePreviewPage: React.FC<IBattlePreviewPageProps> = observer(
               >
                 {opponentStore.assembledTeam?.map((warrior) => {
                   return (
-                    <BattlePreviewWarriorCard
-                      key={warrior.id}
-                      currentWarrior={warrior}
-                    />
+                    <WarriorCard key={warrior.id} currentWarrior={warrior} />
                   );
                 })}
               </FlexRow>
@@ -57,10 +54,7 @@ const BattlePreviewPage: React.FC<IBattlePreviewPageProps> = observer(
               >
                 {teamDataStore.assembledTeam?.map((warrior) => {
                   return (
-                    <BattlePreviewWarriorCard
-                      key={warrior.id}
-                      currentWarrior={warrior}
-                    />
+                    <WarriorCard key={warrior.id} currentWarrior={warrior} />
                   );
                 })}
               </FlexRow>
