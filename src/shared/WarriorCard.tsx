@@ -1,37 +1,35 @@
-import styled from "styled-components";
 import { observer } from "mobx-react-lite";
-import { teamDataStore, warriors } from "@/server";
-import { FlexRow, COLORS } from "@/styles/core/styles";
-import { ISkillTree, IWarrior } from "@/types/core";
+import { IWarrior } from "@/types/core";
+import { warriors } from "@/server";
 import {
   CardContainer,
   CardHeader,
-  CardIcon,
   CardImage,
   CardBody,
   CardStatsContainer,
   CardStats,
   CardTraitsContainer,
   DomTrait,
+  CardIcon,
   VulnTrait,
 } from "@/styles";
 
-interface IStartPageWarriorCardProps {
+interface IWarriorCodeProps {
   currentWarrior: IWarrior;
 }
 
-const StartPageWarriorCard: React.FC<IStartPageWarriorCardProps> = observer(
+const WarriorCard: React.FC<IWarriorCodeProps> = observer(
   ({ currentWarrior }) => {
     const warriorName: string = currentWarrior.name;
     const classType: string = currentWarrior.class;
     const imgPath: string = currentWarrior.imgPath;
     const iconPath: string = currentWarrior.iconPath;
-    const skillTree: ISkillTree = currentWarrior.skillTree;
-    const power: number = skillTree.power;
-    const accuracy: number = skillTree.accuracy;
-    const conditioning: number = skillTree.conditioning;
-    const speed: number = skillTree.speed;
-    const health: number = skillTree.health;
+    const skillTree = currentWarrior.skillTree;
+    const power = skillTree.power;
+    const accuracy = skillTree.accuracy;
+    const conditioning = skillTree.conditioning;
+    const speed = skillTree.speed;
+    const health = skillTree.health;
     // Traits are Vuln and Dom
     const traits = currentWarrior.traits;
     const vuln: string = traits.vulnerable;
@@ -44,12 +42,6 @@ const StartPageWarriorCard: React.FC<IStartPageWarriorCardProps> = observer(
       return warrior.class === dom;
     });
     const domIconPath: string = domWarrior ? domWarrior.iconPath : "";
-
-    const handleAddClick = () => {
-      const current = currentWarrior;
-      current.id = crypto.randomUUID();
-      teamDataStore.addWarrior(current);
-    };
 
     return (
       <CardContainer>
@@ -78,33 +70,10 @@ const StartPageWarriorCard: React.FC<IStartPageWarriorCardProps> = observer(
             </VulnTrait>
           </CardTraitsContainer>
         </CardBody>
-        <AddButtonContainer>
-          <AddButton onClick={handleAddClick}>ADD</AddButton>
-        </AddButtonContainer>
       </CardContainer>
     );
   }
 );
 
-const AddButtonContainer = styled(FlexRow)`
-  width: 100%;
-  height: 40px;
-  justify-content: flex-end;
-  padding-right: 5px;
-  padding-bottom: 5px;
-`;
-
-const AddButton = styled(FlexRow)`
-  height: 40px;
-  width: 40px;
-  background-image: ${COLORS.GREEN_BTN};
-  border-radius: 50%;
-  cursor: pointer;
-
-  &:hover {
-    font-size: 150%;
-  }
-`;
-
-export default StartPageWarriorCard;
-export { StartPageWarriorCard };
+export default WarriorCard;
+export { WarriorCard };

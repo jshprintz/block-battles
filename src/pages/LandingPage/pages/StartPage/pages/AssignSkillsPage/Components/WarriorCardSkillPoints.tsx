@@ -5,6 +5,7 @@ import { ISkillTree, IWarrior } from "@/types/core";
 import { teamDataStore, warriors } from "@/server";
 import { observer } from "mobx-react-lite";
 import { MAX_NUM_OF_ASSIGNED_SKILLS, SKILL_TYPES } from "@/Constants";
+import { CardContainer, CardHeader, CardIcon, CardImage } from "@/styles";
 
 interface IWarriorCardSkillPointsProps {
   currentWarrior: IWarrior;
@@ -41,6 +42,7 @@ const WarriorCardSkillPoints: React.FC<IWarriorCardSkillPointsProps> = observer(
     const warriorName: string = warrior.name;
     const classType: string = warrior.class;
     const imgPath: string = warrior.imgPath;
+    const iconPath: string = warrior.iconPath;
     const skillTree = warrior.skillTree;
 
     const numAvailSkills: number = teamDataStore.bonusSkillPointCount;
@@ -78,7 +80,10 @@ const WarriorCardSkillPoints: React.FC<IWarriorCardSkillPointsProps> = observer(
       <CardContainer>
         <CardHeader>
           <span>{warriorName}</span>
-          <span>{classType}</span>
+          <span>
+            {classType}
+            <CardIcon src={iconPath} alt={classType} />
+          </span>
         </CardHeader>
         <CardImage src={imgPath} alt={`${warriorName}-${classType}`} />
         <CardStatsContainer>
@@ -222,22 +227,6 @@ const WarriorCardSkillPoints: React.FC<IWarriorCardSkillPointsProps> = observer(
     );
   }
 );
-
-const CardHeader = styled(FlexRow)`
-  height: 40px;
-  font-size: 125%;
-  padding: 5px;
-  justify-content: space-between;
-  border-bottom: 2px solid white;
-  user-select: none;
-`;
-
-const CardImage = styled.img`
-  height: 200px;
-  width: 200px;
-  margin-top: 10px;
-  border-radius: 5px;
-`;
 
 const CardStatsContainer = styled.ul`
   height: auto;
