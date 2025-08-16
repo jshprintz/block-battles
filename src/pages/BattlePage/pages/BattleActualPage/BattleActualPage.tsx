@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { observer } from "mobx-react-lite";
-import { BattleActualWarriorCard } from "./Components";
 import { TeamDataStore, teamDataStore } from "@/server";
 import { FlexCol, FlexRow } from "@/styles/core/styles";
+import { WarriorCard } from "@/shared";
 
 interface IBattleActualPageProps {
   opponentStore: TeamDataStore;
@@ -23,10 +23,7 @@ const BattleActualPage: React.FC<IBattleActualPageProps> = observer(
             >
               {opponentStore.assembledTeam?.map((warrior) => {
                 return (
-                  <BattleActualWarriorCard
-                    key={warrior.id}
-                    currentWarrior={warrior}
-                  />
+                  <WarriorCard key={warrior.id} currentWarrior={warrior} />
                 );
               })}
             </FlexRow>
@@ -38,10 +35,7 @@ const BattleActualPage: React.FC<IBattleActualPageProps> = observer(
             >
               {teamDataStore.assembledTeam?.map((warrior) => {
                 return (
-                  <BattleActualWarriorCard
-                    key={warrior.id}
-                    currentWarrior={warrior}
-                  />
+                  <WarriorCard key={warrior.id} currentWarrior={warrior} />
                 );
               })}
             </FlexRow>
