@@ -8,6 +8,7 @@ import { warriors as warriorList } from "@/server/data/warriorData";
 import { observer } from "mobx-react-lite";
 import { NUM_OF_WARRIORS_ON_TEAM } from "@/Constants";
 import { StartPageWarriorCard, StartPageTeamPreview } from "./Components";
+import { deviceStore } from "@/server";
 
 const StartPage = observer(() => {
   const [warriorNumber, setWarriorNumber] = useState(
@@ -16,6 +17,7 @@ const StartPage = observer(() => {
   const [currentWarrior, setCurrentWarrior] = useState<IWarrior>(
     warriorList[warriorNumber]
   );
+  const isMobile: boolean = deviceStore.isMobile;
 
   const onLeftClick = () => {
     setWarriorNumber((prev) =>
@@ -35,26 +37,30 @@ const StartPage = observer(() => {
 
   return (
     <StartPageContainer>
-      <StartPageHeader>
+      <StartPageHeader isMobile={isMobile}>
         <h2>Choose Warriors</h2>
       </StartPageHeader>
-
       <CardDescription>{currentWarrior.description}</CardDescription>
-
       <SelectionBoxContainer>
         <HiChevronLeft
           size={150}
-          style={{ cursor: "pointer" }}
+          style={{
+            cursor: "pointer",
+
+            width: "100px",
+          }}
           onClick={onLeftClick}
         />
         <StartPageWarriorCard currentWarrior={currentWarrior} />
         <HiChevronRight
           size={150}
-          style={{ cursor: "pointer" }}
+          style={{
+            cursor: "pointer",
+            width: "100px",
+          }}
           onClick={onRightClick}
         />
       </SelectionBoxContainer>
-
       <StartPageTeamPreview />
       <HomeButton to="/">Home</HomeButton>
     </StartPageContainer>
@@ -72,10 +78,11 @@ const HeaderContainer = styled(FlexCol)`
   font-size: 300%;
 `;
 
-const StartPageHeader = styled(HeaderContainer)`
-  height: 15%;
+const StartPageHeader = styled(HeaderContainer)<{ isMobile: boolean }>`
+  height: ${(p) => (p.isMobile ? "10%" : "15%")};
   user-select: none;
   margin: 5px;
+  font-size: ${(p) => (p.isMobile ? "200%" : "300%")};
 `;
 
 const CardDescription = styled(FlexRow)`
@@ -84,6 +91,7 @@ const CardDescription = styled(FlexRow)`
   text-align: center;
   padding: 1rem;
   user-select: none;
+  font-size: 14pt;
 `;
 
 const SelectionBoxContainer = styled(FlexRow)`

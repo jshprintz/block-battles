@@ -5,8 +5,10 @@ import { teamDataStore } from "@/server/stores/TeamDataStore";
 import { WarriorCardSkillPoints } from "./Components/WarriorCardSkillPoints";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
+import { deviceStore } from "@/server";
 
 const AssignSkillsPage = observer(() => {
+  const isMobile: boolean = deviceStore.isMobile;
   const assembledTeam: IWarrior[] = teamDataStore.assembledTeam;
   const availableSkillPoints: number = teamDataStore.bonusSkillPointCount;
   const isLastSkill: boolean = availableSkillPoints === 1;
@@ -15,7 +17,7 @@ const AssignSkillsPage = observer(() => {
   return (
     <Container>
       <AssignSkillsPageContainer>
-        <HeaderContainer>
+        <HeaderContainer isMobile={isMobile}>
           {isLastSkill ? (
             <h1>ONE MORE!</h1>
           ) : isNoSkills ? (
@@ -24,7 +26,7 @@ const AssignSkillsPage = observer(() => {
               <BattleButton to={"/battle-lobby"}>GO!</BattleButton>
             </FlexRow>
           ) : (
-            <h1>ASSIGN {availableSkillPoints} SKILLS</h1>
+            <h1>{availableSkillPoints} SKILLS</h1>
           )}
         </HeaderContainer>
         <AssignSkillsCardsContainer>
@@ -64,10 +66,10 @@ const AssignSkillsCardsContainer = styled(FlexRow)`
   justify-content: space-evenly;
 `;
 
-const HeaderContainer = styled(FlexCol)`
-  height: 200px;
+const HeaderContainer = styled(FlexCol)<{ isMobile: boolean }>`
+  height: ${(p) => (p.isMobile ? "10%" : "15%")};
   text-align: center;
-  font-size: 300%;
+  font-size: ${(p) => (p.isMobile ? "200%" : "300%")};
 `;
 
 const BattleButton = styled(Link)`

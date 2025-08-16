@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { COLORS, FlexCol, FlexRow } from "@/styles/core/styles";
+import { COLORS, FlexRow } from "@/styles/core/styles";
+import { CardContainer } from "@/styles";
 import { ISkillTree, IWarrior } from "@/types/core";
 import { teamDataStore, warriors } from "@/server";
 import { observer } from "mobx-react-lite";
@@ -74,7 +75,7 @@ const WarriorCardSkillPoints: React.FC<IWarriorCardSkillPointsProps> = observer(
     // const traits = currentWarrior.traits;
 
     return (
-      <SelectionBox>
+      <CardContainer>
         <CardHeader>
           <span>{warriorName}</span>
           <span>{classType}</span>
@@ -217,26 +218,10 @@ const WarriorCardSkillPoints: React.FC<IWarriorCardSkillPointsProps> = observer(
             </ButtonRow>
           </CardStats>
         </CardStatsContainer>
-      </SelectionBox>
+      </CardContainer>
     );
   }
 );
-
-const Menu = styled(FlexCol)`
-  height: 50%;
-  width: 75%;
-  justify-content: space-evenly;
-  border-radius: 5px;
-`;
-
-const SelectionBox = styled(Menu)`
-  justify-content: space-between;
-  border: 2px solid white;
-  width: 400px;
-  height: auto;
-
-  margin: 5px;
-`;
 
 const CardHeader = styled(FlexRow)`
   height: 40px;

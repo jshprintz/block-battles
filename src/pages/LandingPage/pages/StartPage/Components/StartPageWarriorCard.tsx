@@ -78,7 +78,7 @@ const CardContainer = styled(FlexCol)`
   justify-content: space-between;
   border: 2px solid white;
   border-radius: 5px;
-  width: 250px;
+  width: 400px;
   height: auto;
   user-select: none;
 `;

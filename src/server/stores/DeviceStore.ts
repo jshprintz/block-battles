@@ -17,7 +17,7 @@ class DeviceStore {
 
     if (width < 768) {
       this.deviceType = DEVICE_TYPES.MOBILE;
-    } else if (width < 1024) {
+    } else if (width <= 1024) {
       this.deviceType = isPortrait
         ? DEVICE_TYPES.TABLET_PORTRAIT
         : DEVICE_TYPES.TABLET_LANDSCAPE;
