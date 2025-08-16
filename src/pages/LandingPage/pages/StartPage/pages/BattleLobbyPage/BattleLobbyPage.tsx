@@ -3,12 +3,15 @@ import { COLORS, FlexCol } from "@/styles/core/styles";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { BattleLobbyTeamPreview } from "./Components";
+import { deviceStore } from "@/server";
 
 const BattleLobbyPage: React.FC = observer(() => {
+  const isMobile: boolean = deviceStore.isMobile;
+
   return (
     <Container>
       <BattleLobbyPageContainer>
-        <HeaderContainer>
+        <HeaderContainer isMobile={isMobile}>
           <h1>BATTLE LOBBY</h1>
         </HeaderContainer>
         <Menu>
@@ -46,10 +49,10 @@ const BattleLobbyPageContainer = styled(FlexCol)`
   background-color: black;
 `;
 
-const HeaderContainer = styled(FlexCol)`
-  height: 200px;
+const HeaderContainer = styled(FlexCol)<{ isMobile: boolean }>`
+  height: ${(p) => (p.isMobile ? "10%" : "15%")};
   text-align: center;
-  font-size: 300%;
+  font-size: ${(p) => (p.isMobile ? "200%" : "300%")};
 `;
 
 const Menu = styled(FlexCol)`
