@@ -21,3 +21,10 @@ export const SKILL_TYPES = {
   SPEED: "speed",
   HEALTH: "health",
 };
+
+export const DEVICE_TYPES = {
+  MOBILE: "mobile",
+  TABLET_PORTRAIT: "tablet-portrait",
+  TABLET_LANDSCAPE: "tablet-landscape",
+  DESKTOP: "desktop",
+};
