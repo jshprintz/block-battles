@@ -37,7 +37,7 @@ const StartPage = observer(() => {
 
   return (
     <StartPageContainer>
-      <StartPageHeader isMobile={isMobile}>
+      <StartPageHeader $isMobile={isMobile}>
         <h2>Choose Warriors</h2>
       </StartPageHeader>
       <CardDescription>{currentWarrior.description}</CardDescription>
@@ -46,7 +46,6 @@ const StartPage = observer(() => {
           size={150}
           style={{
             cursor: "pointer",
-
             width: "100px",
           }}
           onClick={onLeftClick}
@@ -78,11 +77,11 @@ const HeaderContainer = styled(FlexCol)`
   font-size: 300%;
 `;
 
-const StartPageHeader = styled(HeaderContainer)<{ isMobile: boolean }>`
-  height: ${(p) => (p.isMobile ? "10%" : "15%")};
+const StartPageHeader = styled(HeaderContainer)<{ $isMobile: boolean }>`
+  height: ${(p) => (p.$isMobile ? "10%" : "15%")};
   user-select: none;
   margin: 5px;
-  font-size: ${(p) => (p.isMobile ? "200%" : "300%")};
+  font-size: ${(p) => (p.$isMobile ? "200%" : "300%")};
 `;
 
 const CardDescription = styled(FlexRow)`

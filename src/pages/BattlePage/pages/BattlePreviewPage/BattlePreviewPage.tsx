@@ -11,6 +11,8 @@ interface IBattlePreviewPageProps {
   opponentStore: TeamDataStore;
 }
 
+// TODO: MAKE RESPONSIVE
+
 const BattlePreviewPage: React.FC<IBattlePreviewPageProps> = observer(
   ({ opponentStore }) => {
     const [seconds, setSeconds] = useState(BATTLE_PREVIEW_COUNTDOWN);

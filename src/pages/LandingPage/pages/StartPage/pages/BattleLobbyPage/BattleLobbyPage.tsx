@@ -11,7 +11,7 @@ const BattleLobbyPage: React.FC = observer(() => {
   return (
     <Container>
       <BattleLobbyPageContainer>
-        <HeaderContainer isMobile={isMobile}>
+        <HeaderContainer $isMobile={isMobile}>
           <h1>BATTLE LOBBY</h1>
         </HeaderContainer>
         <Menu>
@@ -49,10 +49,10 @@ const BattleLobbyPageContainer = styled(FlexCol)`
   background-color: black;
 `;
 
-const HeaderContainer = styled(FlexCol)<{ isMobile: boolean }>`
-  height: ${(p) => (p.isMobile ? "10%" : "15%")};
+const HeaderContainer = styled(FlexCol)<{ $isMobile: boolean }>`
+  height: ${(p) => (p.$isMobile ? "10%" : "15%")};
   text-align: center;
-  font-size: ${(p) => (p.isMobile ? "200%" : "300%")};
+  font-size: ${(p) => (p.$isMobile ? "200%" : "300%")};
 `;
 
 const Menu = styled(FlexCol)`

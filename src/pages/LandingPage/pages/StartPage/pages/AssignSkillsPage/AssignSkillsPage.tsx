@@ -17,7 +17,7 @@ const AssignSkillsPage = observer(() => {
   return (
     <Container>
       <AssignSkillsPageContainer>
-        <HeaderContainer isMobile={isMobile}>
+        <HeaderContainer $isMobile={isMobile}>
           {isLastSkill ? (
             <h1>ONE MORE!</h1>
           ) : isNoSkills ? (
@@ -66,10 +66,10 @@ const AssignSkillsCardsContainer = styled(FlexRow)`
   justify-content: space-evenly;
 `;
 
-const HeaderContainer = styled(FlexCol)<{ isMobile: boolean }>`
-  height: ${(p) => (p.isMobile ? "10%" : "15%")};
+const HeaderContainer = styled(FlexCol)<{ $isMobile: boolean }>`
+  height: ${(p) => (p.$isMobile ? "10%" : "15%")};
   text-align: center;
-  font-size: ${(p) => (p.isMobile ? "200%" : "300%")};
+  font-size: ${(p) => (p.$isMobile ? "200%" : "300%")};
 `;
 
 const BattleButton = styled(Link)`

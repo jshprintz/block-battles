@@ -1,10 +1,8 @@
 import styled from "styled-components";
 import { COLORS, Container, FlexCol } from "@/styles/core/styles";
 import { Link } from "react-router-dom";
-import { deviceStore } from "@/server";
 
 function LandingPage() {
-  console.log("deviceStore", deviceStore);
   return (
     <Container>
       <LandingPageContainer>

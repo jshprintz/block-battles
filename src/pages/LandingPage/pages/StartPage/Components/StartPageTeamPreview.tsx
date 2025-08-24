@@ -40,11 +40,12 @@ const StartPageTeamPreview: React.FC = observer(() => {
           );
         })}
       </TeamCardContainer>
-      {isTeamFull && (
-        <AssignSkillsContainer>
-          <AssignSkills to="/assign-skills">ASSIGN SKILLS</AssignSkills>
-        </AssignSkillsContainer>
-      )}
+
+      <AssignSkillsContainer>
+        <AssignSkills $isTeamFull={isTeamFull} to="/assign-skills">
+          ASSIGN SKILLS
+        </AssignSkills>
+      </AssignSkillsContainer>
     </TeamBox>
   );
 });
@@ -106,28 +107,25 @@ const AssignSkillsContainer = styled(FlexRow)`
   width: 25%;
 `;
 
-const AssignSkills = styled(Link)`
+const AssignSkills = styled(Link)<{ $isTeamFull: boolean }>`
   color: white;
   text-decoration: none;
-
   height: 50px;
   width: 80%;
-
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   text-align: center;
-
+  opacity: ${(p) => (p.$isTeamFull ? "1" : "0.3")};
   color: white;
   text-decoration: none;
-
-  background-image: ${COLORS.YELLOW_BTN};
+  pointer-events: ${(p) => (p.$isTeamFull ? "auto" : "none")};
+  background-image: ${COLORS.GREEN_BTN};
   border-radius: 5px;
-  cursor: pointer;
-
+  cursor: ${(p) => (p.$isTeamFull ? "pointer" : "not-allowed")};
   &:hover {
-    font-size: 150%;
+    font-size: ${(p) => (p.$isTeamFull ? "150%" : "100%")};
   }
 `;
 
